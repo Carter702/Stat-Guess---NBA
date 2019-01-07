@@ -25,11 +25,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:itemBackground="@color/colorPrimaryDark"
-        app:itemIconTint="@color/materialWhite"
-        app:itemTextColor="@color/materialWhite"
+        app:itemIconTint="@drawable/nav_selector"
+        app:itemTextColor="@drawable/nav_selector"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/navigation" />
+        app:menu="@menu/navigation"
+        />
 
 </android.support.constraint.ConstraintLayout>

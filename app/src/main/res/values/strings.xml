@@ -12,4 +12,13 @@
     <string name="settings">Settings</string>
 
     <string name="title_activity_main">MainActivity</string>
+
+    <!-- Games fragment text -->
+    <string name="hello_blank_fragment">Games Fragment</string>
+
+    <!-- Profile fragment text -->
+    <string name="profile_test">Profile Fragment</string>
+
+    <!-- History fragment text -->
+    <string name="history_test">History Fragment</string>
 </resources>
