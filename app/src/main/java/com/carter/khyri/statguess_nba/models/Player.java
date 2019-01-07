@@ -1,4 +1,4 @@
-package data;
+package com.carter.khyri.statguess_nba.models;
 
 public class Player {
 
