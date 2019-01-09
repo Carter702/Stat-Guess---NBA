@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,16 +19,23 @@ import com.carter.khyri.statguess_nba.fragments.ProfileFragment;
 
 public class MainActivity extends AppCompatActivity {
 
+    final Fragment gameFrag = new GamesFragment();
+    final Fragment profileFrag = new ProfileFragment();
+    final Fragment historyFrag = new HistoryFragment();
+
+    final FragmentManager fm = getSupportFragmentManager();
+
+    Fragment active = gameFrag;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         BottomNavigationView navigation = findViewById(R.id.bottomNavigationView2);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        loadFragment(new GamesFragment());
+        loadFragment();
     }
 
 
@@ -41,19 +49,16 @@ public class MainActivity extends AppCompatActivity {
             Fragment fragment;
             switch (item.getItemId()) {
                 case R.id.navigation_games:
-                    Log.d("DEBUG", "onNavigationItemSelected: GAMES SELECTED");
-                    fragment = new GamesFragment();
-                    loadFragment(fragment);
+                    fm.beginTransaction().hide(active).show(gameFrag).commit();
+                    active = gameFrag;
                     return true;
                 case R.id.navigation_history:
-                    Log.d("DEBUG", "onNavigationItemSelected: HISTORY SELECTED");
-                    //fragment = new HistoryFragment();
-                    loadFragment(new HistoryFragment());
+                    fm.beginTransaction().hide(active).show(historyFrag).commit();
+                    active = historyFrag;
                     return true;
                 case R.id.navigation_profile:
-                    Log.d("DEBUG", "onNavigationItemSelected: PROFILE SELECTED");
-                    //fragment = new ProfileFragment();
-                    loadFragment(new ProfileFragment());
+                    fm.beginTransaction().hide(active).show(profileFrag).commit();
+                    active = profileFrag;
                     return true;
             }
 
@@ -61,11 +66,23 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private void loadFragment(Fragment fragment) {
+    private void loadFragment() {
 
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+/*        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container, fragment);
         transaction.addToBackStack(null);
-        transaction.commit();
+
+        transaction.commit();*/
+
+        fm.beginTransaction().add(R.id.container, profileFrag, "3").hide(profileFrag).commit();
+        fm.beginTransaction().add(R.id.container, historyFrag, "2").hide(historyFrag).commit();
+        fm.beginTransaction().add(R.id.container,gameFrag, "1").commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+
     }
 }

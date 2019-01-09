@@ -5,7 +5,7 @@
 
     <!-- grayscale -->
     <color name="colorPrimary">#bdbdbd</color>
-    <color name="colorPrimaryDark">#212121</color>
+    <color name="colorPrimaryDark">#141414</color>
     <color name="colorAccent">#616161</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
