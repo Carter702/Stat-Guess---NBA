@@ -9,6 +9,7 @@ import retrofit2.http.Path;
 
 public interface ApiService {
 
-    @GET("10s/prod/v1/20190109/scoreboard.json")
-    Call<GameInfo> getGameData();
+    // date format: 20190110
+    @GET("10s/prod/v1/{date}/scoreboard.json")
+    Call<GameInfo> getGameData(@Path("date") String date);
 }

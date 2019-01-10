@@ -13,8 +13,14 @@
 
     <string name="title_activity_main">MainActivity</string>
 
-    <!-- Games fragment text -->
+    <!-- GameInfo fragment text -->
     <string name="hello_blank_fragment">Games Fragment</string>
+    <string name="home_city">HOME</string>
+    <string name="home_score">SCORE</string>
+    <string name="away_city">AWAY</string>
+    <string name="away_score">SCORE</string>
+    <string name="clock_time">TIME</string>
+    <string name="game_quarter">QUARTER</string>
 
     <!-- Profile fragment text -->
     <string name="profile_test">Profile Fragment</string>

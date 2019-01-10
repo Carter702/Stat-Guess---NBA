@@ -1,6 +1,6 @@
 package com.carter.khyri.statguess_nba.fragments;
 
-import android.content.Context;
+import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,13 +10,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListAdapter;
 
 import com.carter.khyri.statguess_nba.R;
 import com.carter.khyri.statguess_nba.adapters.GameAdapter;
 import com.carter.khyri.statguess_nba.models.GameInfo;
-import com.carter.khyri.statguess_nba.models.Games;
 import com.carter.khyri.statguess_nba.network.ApiService;
+
+import java.util.Calendar;
+import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,6 +33,7 @@ public class GamesFragment extends Fragment {
     RecyclerView mRecyclerView;
     GameAdapter mGameAdapter;
     GameInfo games = new GameInfo();
+    String curDate;
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -81,13 +83,16 @@ public class GamesFragment extends Fragment {
         Retrofit retrofit = builder.build();
 
         ApiService api = retrofit.create(ApiService.class);
-        Call<GameInfo> call = api.getGameData();
+
+        Date date = Calendar.getInstance().getTime();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+        curDate = formatter.format(date);
+
+        Call<GameInfo> call = api.getGameData(curDate);
 
         call.enqueue(new Callback<GameInfo>() {
             @Override
             public void onResponse(Call<GameInfo> call, Response<GameInfo> response) {
-
-                Log.i("HERE", "YOU GOT IT");
 
                 games = response.body();
                 mGameAdapter = new GameAdapter(games);

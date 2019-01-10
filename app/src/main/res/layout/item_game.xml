@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="HOME"
+                android:text="@string/home_city"
                 android:textColor="@color/materialWhite"
                 android:textSize="@dimen/font_large"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -38,9 +38,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:text="AWAY"
                 android:textColor="@color/materialWhite"
                 android:textSize="@dimen/font_large"
+                app:layout_constraintEnd_toStartOf="@+id/home_city"
+                app:layout_constraintHorizontal_bias="0.045"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,12 +51,14 @@
                 android:id="@+id/away_score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text="52"
                 android:textColor="@color/materialWhite"
                 android:textSize="@dimen/font_huge"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/away_city"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/away_city"
                 app:layout_constraintTop_toBottomOf="@+id/away_city" />
 
             <TextView
@@ -61,11 +66,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="8dp"
                 android:text="72"
                 android:textColor="@color/materialWhite"
                 android:textSize="@dimen/font_huge"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/home_city"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/home_city"
                 app:layout_constraintTop_toBottomOf="@+id/home_city" />
 
             <TextView
@@ -88,17 +95,13 @@
                 android:id="@+id/game_quarter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginTop="4dp"
                 android:text="4th"
                 android:textColor="@color/materialWhite"
                 android:textSize="@dimen/font_small"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/game_time"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintEnd_toEndOf="@+id/game_time"
+                app:layout_constraintStart_toStartOf="@+id/game_time"
+                app:layout_constraintTop_toBottomOf="@+id/game_time" />
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
