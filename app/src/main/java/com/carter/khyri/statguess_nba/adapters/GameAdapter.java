@@ -7,10 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.carter.khyri.statguess_nba.R;
-import com.carter.khyri.statguess_nba.models.Game;
+import com.carter.khyri.statguess_nba.models.Games;
 
 import org.w3c.dom.Text;
 
@@ -18,9 +17,9 @@ import java.util.ArrayList;
 
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder> {
 
-    private ArrayList<Game> gameList;
+    private Games gameList;
 
-    public GameAdapter(ArrayList<Game> gameList) {
+    public GameAdapter(Games gameList) {
         this.gameList = gameList;
     }
 
@@ -37,20 +36,26 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
     @Override
     public void onBindViewHolder(@NonNull GameViewHolder gameViewHolder, int position) {
 
-        gameViewHolder.txtGameQuarter.setText(gameList.get(position).getQuarter());
-        gameViewHolder.txtHomeCity.setText(gameList.get(position).getHomeCity());
-        gameViewHolder.txtAwayCity.setText(gameList.get(position).getAwayCity());
-        gameViewHolder.txtGameTime.setText(gameList.get(position).getGameTime());
-        String temp = Integer.toString(gameList.get(position).getAwayScore());
-        gameViewHolder.txtAwayScore.setText(temp);
-        temp = Integer.toString(gameList.get(position).getHomeScore());
-        gameViewHolder.txtHomeScore.setText(temp);
+        String hTeam = gameList.getGames().get(position).getHTeam().getTriCode();
+        String hScore = gameList.getGames().get(position).getHTeam().getScore();
+        String aTeam = gameList.getGames().get(position).getVTeam().getTriCode();
+        String aScore = gameList.getGames().get(position).getVTeam().getScore();
+        String quarter = Integer.toString(gameList.getGames().get(position).getPeriod().getCurrent());
+        String clock = gameList.getGames().get(position).getClock();
+        if (clock.isEmpty())
+            clock = "FINAL";
 
+        gameViewHolder.txtGameQuarter.setText(quarter);
+        gameViewHolder.txtHomeCity.setText(hTeam);
+        gameViewHolder.txtAwayCity.setText(aTeam);
+        gameViewHolder.txtGameTime.setText(clock);
+        gameViewHolder.txtAwayScore.setText(aScore);
+        gameViewHolder.txtHomeScore.setText(hScore);
     }
 
     @Override
     public int getItemCount() {
-        return gameList.size();
+        return gameList.getNumGames();
     }
 
     public class GameViewHolder extends RecyclerView.ViewHolder {

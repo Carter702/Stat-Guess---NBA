@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +14,16 @@ import android.widget.ListAdapter;
 
 import com.carter.khyri.statguess_nba.R;
 import com.carter.khyri.statguess_nba.adapters.GameAdapter;
-import com.carter.khyri.statguess_nba.models.Game;
+import com.carter.khyri.statguess_nba.models.Games;
+import com.carter.khyri.statguess_nba.network.ApiService;
+import com.google.gson.GsonBuilder;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 
 public class GamesFragment extends Fragment {
 
@@ -24,6 +31,7 @@ public class GamesFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     RecyclerView mRecyclerView;
     GameAdapter mGameAdapter;
+    Games games = new Games();
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -67,13 +75,32 @@ public class GamesFragment extends Fragment {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
 
-        ArrayList data = new ArrayList<Game>();
-        for(int i = 0; i < 9; i++) {
-            data.add(new Game());
-        }
+        Retrofit.Builder builder = new Retrofit.Builder().baseUrl("https://data.nba.net/")
+        .addConverterFactory(GsonConverterFactory.create());
 
-        mGameAdapter = new GameAdapter(data);
-        mRecyclerView.setAdapter(mGameAdapter);
+        Retrofit retrofit = builder.build();
+
+        ApiService api = retrofit.create(ApiService.class);
+        Call<Games> call = api.getGameData();
+
+        call.enqueue(new Callback<Games>() {
+            @Override
+            public void onResponse(Call<Games> call, Response<Games> response) {
+
+                Log.i("HERE", "YOU GOT IT");
+
+                games = response.body();
+                mGameAdapter = new GameAdapter(games);
+                mRecyclerView.setAdapter(mGameAdapter);
+
+            }
+
+            @Override
+            public void onFailure(Call<Games> call, Throwable t) {
+                Log.e("ERROR","error connecting");
+                t.printStackTrace();
+            }
+        });
 
         // Inflate the layout for this fragment
         return view;
