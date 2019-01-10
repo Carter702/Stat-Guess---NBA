@@ -68,11 +68,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadFragment() {
 
-/*        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        /*
+         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container, fragment);
         transaction.addToBackStack(null);
 
-        transaction.commit();*/
+        transaction.commit();
+        */
 
         fm.beginTransaction().add(R.id.container, profileFrag, "3").hide(profileFrag).commit();
         fm.beginTransaction().add(R.id.container, historyFrag, "2").hide(historyFrag).commit();

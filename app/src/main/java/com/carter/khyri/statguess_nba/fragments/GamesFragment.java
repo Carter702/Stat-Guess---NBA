@@ -14,9 +14,9 @@ import android.widget.ListAdapter;
 
 import com.carter.khyri.statguess_nba.R;
 import com.carter.khyri.statguess_nba.adapters.GameAdapter;
+import com.carter.khyri.statguess_nba.models.GameInfo;
 import com.carter.khyri.statguess_nba.models.Games;
 import com.carter.khyri.statguess_nba.network.ApiService;
-import com.google.gson.GsonBuilder;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,7 +31,7 @@ public class GamesFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     RecyclerView mRecyclerView;
     GameAdapter mGameAdapter;
-    Games games = new Games();
+    GameInfo games = new GameInfo();
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -81,11 +81,11 @@ public class GamesFragment extends Fragment {
         Retrofit retrofit = builder.build();
 
         ApiService api = retrofit.create(ApiService.class);
-        Call<Games> call = api.getGameData();
+        Call<GameInfo> call = api.getGameData();
 
-        call.enqueue(new Callback<Games>() {
+        call.enqueue(new Callback<GameInfo>() {
             @Override
-            public void onResponse(Call<Games> call, Response<Games> response) {
+            public void onResponse(Call<GameInfo> call, Response<GameInfo> response) {
 
                 Log.i("HERE", "YOU GOT IT");
 
@@ -96,7 +96,7 @@ public class GamesFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<Games> call, Throwable t) {
+            public void onFailure(Call<GameInfo> call, Throwable t) {
                 Log.e("ERROR","error connecting");
                 t.printStackTrace();
             }

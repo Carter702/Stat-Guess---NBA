@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.carter.khyri.statguess_nba.R;
-import com.carter.khyri.statguess_nba.models.Games;
+import com.carter.khyri.statguess_nba.models.GameInfo;
 
 import org.w3c.dom.Text;
 
@@ -17,9 +17,9 @@ import java.util.ArrayList;
 
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder> {
 
-    private Games gameList;
+    private GameInfo gameList;
 
-    public GameAdapter(Games gameList) {
+    public GameAdapter(GameInfo gameList) {
         this.gameList = gameList;
     }
 
