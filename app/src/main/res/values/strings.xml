@@ -16,11 +16,17 @@
     <!-- GameInfo fragment text -->
     <string name="hello_blank_fragment">Games Fragment</string>
     <string name="home_city">HOME</string>
-    <string name="home_score">SCORE</string>
+    <string name="home_score">31</string>
     <string name="away_city">AWAY</string>
-    <string name="away_score">SCORE</string>
-    <string name="clock_time">TIME</string>
-    <string name="game_quarter">QUARTER</string>
+    <string name="away_score">23</string>
+    <string name="clock_time">4:44</string>
+    <string name="game_quarter">0</string>
+    <string name="zero">0</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="four">4</string>
+    <string name="total">T</string>
 
     <!-- Profile fragment text -->
     <string name="profile_test">Profile Fragment</string>
