@@ -38,6 +38,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull GameViewHolder gameViewHolder, int position) {
+
         GameInfo.Game game = gameList.getGames().get(position);
 
         String hTeam = game.getHTeam().getTriCode();
@@ -58,13 +59,26 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
             clock = "FINAL";
 
         gameViewHolder.txtGameQuarter.setText(quarter);
-        gameViewHolder.txtHomeCity.setText(hTeam);
-        gameViewHolder.txtAwayCity.setText(aTeam);
         gameViewHolder.txtGameTime.setText(clock);
-        gameViewHolder.txtAwayScore.setText(aScore);
-        gameViewHolder.txtHomeScore.setText(hScore);
-        gameViewHolder.awayLogo.setImageResource(getLogo(game.getVTeam().getTriCode()));
+
+        gameViewHolder.txtHomeCity.setText(hTeam);
         gameViewHolder.homeLogo.setImageResource(getLogo(game.getHTeam().getTriCode()));
+        gameViewHolder.txtHomeScore.setText(hScore);
+        //gameViewHolder.txtHomeFirstPoints.setText(game.getHTeam().getLinescore().get(0).getScore());
+        //gameViewHolder.txtHomeSecondPoints.setText(game.getHTeam().getLinescore().get(1).getScore());
+        //gameViewHolder.txtHomeThirdPoints.setText(game.getHTeam().getLinescore().get(2).getScore());
+        //gameViewHolder.txtHomeFourthPoints.setText(game.getHTeam().getLinescore().get(3).getScore());
+
+        gameViewHolder.txtAwayCity.setText(aTeam);
+        gameViewHolder.txtAwayScore.setText(aScore);
+        if( !(game.getVTeam().getLinescore().size() == 0) ) {
+            gameViewHolder.txtAwayFirstPoints.setText(game.getVTeam().getLinescore().get(0).getScore());
+            gameViewHolder.txtAwaySecondPoints.setText(game.getVTeam().getLinescore().get(1).getScore());
+            gameViewHolder.txtAwayThirdPoints.setText(game.getVTeam().getLinescore().get(2).getScore());
+            gameViewHolder.txtAwayFourthPoints.setText(game.getVTeam().getLinescore().get(3).getScore());
+        }
+        gameViewHolder.awayLogo.setImageResource(getLogo(game.getVTeam().getTriCode()));
+
     }
 
     private int getLogo(String triCode) {
@@ -177,19 +191,30 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
 
     public class GameViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txtHomeCity, txtAwayCity, txtHomeScore, txtAwayScore, txtGameTime, txtGameQuarter;
+        TextView txtGameTime, txtGameQuarter;
+        TextView txtHomeCity, txtHomeScore;
+        TextView txtAwayCity, txtAwayScore, txtAwayFirstPoints, txtAwaySecondPoints, txtAwayThirdPoints, txtAwayFourthPoints;
         ImageView awayLogo, homeLogo;
 
         public GameViewHolder(View itemView) {
             super(itemView);
+
             txtHomeCity = (TextView) itemView.findViewById(R.id.home_city);
-            txtAwayCity = (TextView) itemView.findViewById(R.id.away_city);
             txtHomeScore = (TextView) itemView.findViewById(R.id.home_score);
+            homeLogo = (ImageView) itemView.findViewById(R.id.home_logo);
+
+            txtAwayCity = (TextView) itemView.findViewById(R.id.away_city);
             txtAwayScore = (TextView) itemView.findViewById(R.id.away_score);
+            txtAwayFirstPoints = (TextView) itemView.findViewById(R.id.first_score_away);
+            txtAwaySecondPoints = (TextView) itemView.findViewById(R.id.second_score_away);
+            txtAwayThirdPoints = (TextView) itemView.findViewById(R.id.third_score_away);
+            txtAwayFourthPoints = (TextView) itemView.findViewById(R.id.fourth_score_away);
+            awayLogo = (ImageView) itemView.findViewById(R.id.away_logo);
+
+
             txtGameTime = (TextView) itemView.findViewById(R.id.game_time);
             txtGameQuarter = (TextView) itemView.findViewById(R.id.game_quarter);
-            awayLogo = (ImageView) itemView.findViewById(R.id.away_logo);
-            homeLogo = (ImageView) itemView.findViewById(R.id.home_logo);
+
         }
 
     }

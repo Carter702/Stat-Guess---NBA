@@ -201,8 +201,8 @@
                 android:layout_marginEnd="16dp"
                 android:text="@string/zero"
                 android:textColor="@color/materialWhite"
-                app:layout_constraintBaseline_toBaselineOf="@+id/first_score_away"
-                app:layout_constraintEnd_toStartOf="@+id/third_score_away" />
+                app:layout_constraintEnd_toStartOf="@+id/third_score_away"
+                tools:layout_editor_absoluteY="47dp" />
 
             <TextView
                 android:id="@+id/third_score_away"
@@ -211,8 +211,8 @@
                 android:layout_marginEnd="16dp"
                 android:text="@string/zero"
                 android:textColor="@color/materialWhite"
-                app:layout_constraintBaseline_toBaselineOf="@+id/second_score_away"
-                app:layout_constraintEnd_toStartOf="@+id/fourth_score_away" />
+                app:layout_constraintEnd_toStartOf="@+id/fourth_score_away"
+                tools:layout_editor_absoluteY="47dp" />
 
             <TextView
                 android:id="@+id/fourth_score_away"
@@ -221,8 +221,8 @@
                 android:layout_marginEnd="8dp"
                 android:text="@string/zero"
                 android:textColor="@color/materialWhite"
-                app:layout_constraintBaseline_toBaselineOf="@+id/third_score_away"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2" />
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                tools:layout_editor_absoluteY="47dp" />
 
             <android.support.constraint.Guideline
                 android:id="@+id/guideline"

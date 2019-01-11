@@ -98,7 +98,7 @@ public class GamesFragment extends Fragment {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
         curDate = formatter.format(date);
 
-        Call<GameInfo> call = api.getGameData(curDate);
+        Call<GameInfo> call = api.getGameData("20190110");
 
         call.enqueue(new Callback<GameInfo>() {
             @Override
