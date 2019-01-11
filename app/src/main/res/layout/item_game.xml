@@ -24,56 +24,47 @@
                 android:id="@+id/home_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:text="@string/home_city"
                 android:textColor="@color/materialWhite"
                 android:textSize="@dimen/font_large"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintBaseline_toBaselineOf="@+id/away_city"
+                app:layout_constraintEnd_toStartOf="@+id/home_logo" />
 
             <TextView
                 android:id="@+id/away_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:text="AWAY"
+                android:layout_marginTop="16dp"
+                android:text="@string/away_city"
                 android:textColor="@color/materialWhite"
                 android:textSize="@dimen/font_large"
-                app:layout_constraintEnd_toStartOf="@+id/home_city"
-                app:layout_constraintHorizontal_bias="0.045"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/away_logo"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/away_score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:text="52"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/away_score"
                 android:textColor="@color/materialWhite"
                 android:textSize="@dimen/font_huge"
-                app:layout_constraintEnd_toEndOf="@+id/away_city"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/away_city"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/away_city" />
 
             <TextView
                 android:id="@+id/home_score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="72"
+                android:text="@string/home_score"
                 android:textColor="@color/materialWhite"
                 android:textSize="@dimen/font_huge"
-                app:layout_constraintEnd_toEndOf="@+id/home_city"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@+id/home_city"
-                app:layout_constraintTop_toBottomOf="@+id/home_city" />
+                app:layout_constraintBaseline_toBaselineOf="@+id/away_score"
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <TextView
                 android:id="@+id/game_time"
@@ -83,7 +74,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="1:35"
+                android:text="@string/clock_time"
                 android:textColor="@color/materialWhite"
                 android:textSize="@dimen/font_huge"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -96,12 +87,30 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="4th"
+                android:text="@string/game_quarter"
                 android:textColor="@color/materialWhite"
                 android:textSize="@dimen/font_small"
                 app:layout_constraintEnd_toEndOf="@+id/game_time"
                 app:layout_constraintStart_toStartOf="@+id/game_time"
                 app:layout_constraintTop_toBottomOf="@+id/game_time" />
+
+            <ImageView
+                android:id="@+id/away_logo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@android:color/darker_gray" />
+
+            <ImageView
+                android:id="@+id/home_logo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@color/colorAccent" />
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>

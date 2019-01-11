@@ -1,11 +1,14 @@
 package com.carter.khyri.statguess_nba.adapters;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.carter.khyri.statguess_nba.R;
@@ -35,14 +38,23 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull GameViewHolder gameViewHolder, int position) {
+        GameInfo.Game game = gameList.getGames().get(position);
 
-        String hTeam = gameList.getGames().get(position).getHTeam().getTriCode();
-        String hScore = gameList.getGames().get(position).getHTeam().getScore();
-        String aTeam = gameList.getGames().get(position).getVTeam().getTriCode();
-        String aScore = gameList.getGames().get(position).getVTeam().getScore();
-        String quarter = Integer.toString(gameList.getGames().get(position).getPeriod().getCurrent());
-        String clock = gameList.getGames().get(position).getClock();
-        if (clock.isEmpty())
+        String hTeam = game.getHTeam().getTriCode();
+        String hScore = game.getHTeam().getScore();
+        String aTeam = game.getVTeam().getTriCode();
+        String aScore = game.getVTeam().getScore();
+        String quarter = Integer.toString(game.getPeriod().getCurrent());
+        if (game.getPeriod().getCurrent() > game.getPeriod().getMaxRegular()) {
+            int otQuarter = game.getPeriod().getMaxRegular() - game.getPeriod().getCurrent();
+            quarter = "OT" + Integer.toString(otQuarter);
+        }
+        String clock = game.getClock();
+        if (clock.isEmpty() && quarter.equals("0"))
+            clock = "TODAY";
+        else if ((game.getPeriod().isIsHalftime()))
+            clock = "HALFTIME";
+        else if (clock.isEmpty() && quarter.equals("4"))
             clock = "FINAL";
 
         gameViewHolder.txtGameQuarter.setText(quarter);
@@ -51,6 +63,44 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
         gameViewHolder.txtGameTime.setText(clock);
         gameViewHolder.txtAwayScore.setText(aScore);
         gameViewHolder.txtHomeScore.setText(hScore);
+        gameViewHolder.awayLogo.setImageResource(getLogo(game.getVTeam().getTriCode()));
+        gameViewHolder.homeLogo.setImageResource(getLogo(game.getHTeam().getTriCode()));
+    }
+
+    private int getLogo(String triCode) {
+
+        int resource = 0;
+        switch (triCode) {
+            case "BOS":
+                resource = R.drawable.logo_bos;
+                break;
+            case "MIA":
+                resource = R.drawable.logo_mia;
+                break;
+            case "LAC":
+                resource = R.drawable.logo_lac;
+                break;
+            case "DEN":
+                resource = R.drawable.logo_den;
+                break;
+            case "OKC":
+                resource = R.drawable.logo_okc;
+                break;
+            case "SAS":
+                resource = R.drawable.logo_sas;
+                break;
+            case "DET":
+                resource = R.drawable.logo_det;
+                break;
+            case "SAC":
+                resource = R.drawable.logo_sac;
+                break;
+
+                default:
+                    resource = R.drawable.ic_basketball;
+        }
+
+        return resource;
     }
 
     @Override
@@ -61,6 +111,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
     public class GameViewHolder extends RecyclerView.ViewHolder {
 
         TextView txtHomeCity, txtAwayCity, txtHomeScore, txtAwayScore, txtGameTime, txtGameQuarter;
+        ImageView awayLogo, homeLogo;
 
         public GameViewHolder(View itemView) {
             super(itemView);
@@ -70,7 +121,10 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
             txtAwayScore = (TextView) itemView.findViewById(R.id.away_score);
             txtGameTime = (TextView) itemView.findViewById(R.id.game_time);
             txtGameQuarter = (TextView) itemView.findViewById(R.id.game_quarter);
+            awayLogo = (ImageView) itemView.findViewById(R.id.away_logo);
+            homeLogo = (ImageView) itemView.findViewById(R.id.home_logo);
         }
 
     }
+
 }

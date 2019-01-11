@@ -75,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
 
         transaction.commit();
         */
-
         fm.beginTransaction().add(R.id.container, profileFrag, "3").hide(profileFrag).commit();
         fm.beginTransaction().add(R.id.container, historyFrag, "2").hide(historyFrag).commit();
         fm.beginTransaction().add(R.id.container,gameFrag, "1").commit();
