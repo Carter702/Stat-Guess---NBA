@@ -13,13 +13,12 @@ import android.widget.TextView;
 import com.carter.khyri.statguess_nba.R;
 import com.carter.khyri.statguess_nba.models.GameInfo;
 
+
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder> {
 
     private GameInfo gameList;
 
-    public GameAdapter(GameInfo gameList) {
-        this.gameList = gameList;
-    }
+    public GameAdapter(GameInfo gameList) { this.gameList = gameList; }
 
     @NonNull
     @Override
@@ -44,13 +43,15 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
         String clock = game.getClock();
 
         if (clock.isEmpty() && quarter.equals("0")) {
-            clock = "TODAY";
+            clock = game.getStartTimeEastern();
             quarter = "";
         }
         else if ((game.getPeriod().isIsHalftime()))
             clock = "HALFTIME";
-        else if (clock.isEmpty() && quarter.equals("4"))
+        else if (clock.isEmpty() && quarter.equals("4th")) {
             clock = "FINAL";
+            quarter = "";
+        }
 
         gameViewHolder.txtGameQuarter.setText(quarter);
         gameViewHolder.txtGameTime.setText(clock);
@@ -58,7 +59,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
         gameViewHolder.txtHomeCity.setText(hTeam);
         gameViewHolder.homeLogo.setImageResource(getLogo(game.getHTeam().getTriCode()));
         gameViewHolder.txtHomeScore.setText(hScore);
-        if( !(game.getHTeam().getLinescore().size() == 0) ) {
+        if( !(game.getHTeam().getLinescore().isEmpty()) ) {
             gameViewHolder.txtHomeFirstPoints.setText(game.getHTeam().getLinescore().get(0).getScore());
             gameViewHolder.txtHomeSecondPoints.setText(game.getHTeam().getLinescore().get(1).getScore());
             gameViewHolder.txtHomeThirdPoints.setText(game.getHTeam().getLinescore().get(2).getScore());
@@ -67,13 +68,13 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
 
         gameViewHolder.txtAwayCity.setText(aTeam);
         gameViewHolder.txtAwayScore.setText(aScore);
-        if( !(game.getVTeam().getLinescore().size() == 0) ) {
+        gameViewHolder.awayLogo.setImageResource(getLogo(game.getVTeam().getTriCode()));
+        if( !(game.getVTeam().getLinescore().isEmpty()) ) {
             gameViewHolder.txtAwayFirstPoints.setText(game.getVTeam().getLinescore().get(0).getScore());
             gameViewHolder.txtAwaySecondPoints.setText(game.getVTeam().getLinescore().get(1).getScore());
             gameViewHolder.txtAwayThirdPoints.setText(game.getVTeam().getLinescore().get(2).getScore());
             gameViewHolder.txtAwayFourthPoints.setText(game.getVTeam().getLinescore().get(3).getScore());
         }
-        gameViewHolder.awayLogo.setImageResource(getLogo(game.getVTeam().getTriCode()));
 
     }
 

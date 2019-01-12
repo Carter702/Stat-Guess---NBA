@@ -22,9 +22,7 @@ public class MainActivity extends AppCompatActivity {
     final Fragment gameFrag = new GamesFragment();
     final Fragment profileFrag = new ProfileFragment();
     final Fragment historyFrag = new HistoryFragment();
-
     final FragmentManager fm = getSupportFragmentManager();
-
     Fragment active = gameFrag;
 
     @Override
@@ -46,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-            Fragment fragment;
             switch (item.getItemId()) {
                 case R.id.navigation_games:
                     fm.beginTransaction().hide(active).show(gameFrag).commit();
@@ -67,14 +64,6 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private void loadFragment() {
-
-        /*
-         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, fragment);
-        transaction.addToBackStack(null);
-
-        transaction.commit();
-        */
         fm.beginTransaction().add(R.id.container, profileFrag, "3").hide(profileFrag).commit();
         fm.beginTransaction().add(R.id.container, historyFrag, "2").hide(historyFrag).commit();
         fm.beginTransaction().add(R.id.container,gameFrag, "1").commit();
