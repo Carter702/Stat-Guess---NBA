@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     final Fragment profileFrag = new ProfileFragment();
     final Fragment historyFrag = new HistoryFragment();
     final FragmentManager fm = getSupportFragmentManager();
+
     Fragment active = gameFrag;
 
     @Override
