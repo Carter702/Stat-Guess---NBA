@@ -90,7 +90,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:text="@string/clock_time"
                 android:textColor="@color/materialWhite"
@@ -104,14 +104,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
                 android:text="@string/game_quarter"
                 android:textColor="@color/materialWhite"
                 android:textSize="@dimen/font_normal"
-                app:layout_constraintBottom_toBottomOf="@+id/view"
-                app:layout_constraintStart_toEndOf="@+id/game_time"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintBaseline_toBaselineOf="@+id/game_time"
+                app:layout_constraintStart_toEndOf="@+id/game_time" />
 
             <ImageView
                 android:id="@+id/away_logo"
@@ -263,6 +260,51 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintGuide_begin="227dp" />
+
+            <TextView
+                android:id="@+id/first_score_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/zero"
+                android:textColor="@color/materialWhite"
+                app:layout_constraintBaseline_toBaselineOf="@+id/home_score"
+                app:layout_constraintEnd_toStartOf="@+id/second_score_home"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/home_logo"
+                app:layout_constraintStart_toStartOf="@+id/guideline" />
+
+            <TextView
+                android:id="@+id/second_score_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/zero"
+                android:textColor="@color/materialWhite"
+                app:layout_constraintBaseline_toBaselineOf="@+id/first_score_home"
+                app:layout_constraintEnd_toStartOf="@+id/third_score_home"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/first_score_home" />
+
+            <TextView
+                android:id="@+id/third_score_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/zero"
+                android:textColor="@color/materialWhite"
+                app:layout_constraintBaseline_toBaselineOf="@+id/second_score_home"
+                app:layout_constraintEnd_toStartOf="@+id/fourth_score_home"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/second_score_home" />
+
+            <TextView
+                android:id="@+id/fourth_score_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/zero"
+                android:textColor="@color/materialWhite"
+                app:layout_constraintBaseline_toBaselineOf="@+id/third_score_home"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/third_score_home" />
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>

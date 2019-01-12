@@ -1,7 +1,6 @@
 package com.carter.khyri.statguess_nba.adapters;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,10 +12,6 @@ import android.widget.TextView;
 
 import com.carter.khyri.statguess_nba.R;
 import com.carter.khyri.statguess_nba.models.GameInfo;
-
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder> {
 
@@ -45,14 +40,13 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
         String hScore = game.getHTeam().getScore();
         String aTeam = game.getVTeam().getTriCode();
         String aScore = game.getVTeam().getScore();
-        String quarter = Integer.toString(game.getPeriod().getCurrent());
-        if (game.getPeriod().getCurrent() > game.getPeriod().getMaxRegular()) {
-            int otQuarter = game.getPeriod().getMaxRegular() - game.getPeriod().getCurrent();
-            quarter = "OT" + Integer.toString(otQuarter);
-        }
+        String quarter = getQuarter(game);
         String clock = game.getClock();
-        if (clock.isEmpty() && quarter.equals("0"))
+
+        if (clock.isEmpty() && quarter.equals("0")) {
             clock = "TODAY";
+            quarter = "";
+        }
         else if ((game.getPeriod().isIsHalftime()))
             clock = "HALFTIME";
         else if (clock.isEmpty() && quarter.equals("4"))
@@ -64,10 +58,12 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
         gameViewHolder.txtHomeCity.setText(hTeam);
         gameViewHolder.homeLogo.setImageResource(getLogo(game.getHTeam().getTriCode()));
         gameViewHolder.txtHomeScore.setText(hScore);
-        //gameViewHolder.txtHomeFirstPoints.setText(game.getHTeam().getLinescore().get(0).getScore());
-        //gameViewHolder.txtHomeSecondPoints.setText(game.getHTeam().getLinescore().get(1).getScore());
-        //gameViewHolder.txtHomeThirdPoints.setText(game.getHTeam().getLinescore().get(2).getScore());
-        //gameViewHolder.txtHomeFourthPoints.setText(game.getHTeam().getLinescore().get(3).getScore());
+        if( !(game.getHTeam().getLinescore().size() == 0) ) {
+            gameViewHolder.txtHomeFirstPoints.setText(game.getHTeam().getLinescore().get(0).getScore());
+            gameViewHolder.txtHomeSecondPoints.setText(game.getHTeam().getLinescore().get(1).getScore());
+            gameViewHolder.txtHomeThirdPoints.setText(game.getHTeam().getLinescore().get(2).getScore());
+            gameViewHolder.txtHomeFourthPoints.setText(game.getHTeam().getLinescore().get(3).getScore());
+        }
 
         gameViewHolder.txtAwayCity.setText(aTeam);
         gameViewHolder.txtAwayScore.setText(aScore);
@@ -79,6 +75,35 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
         }
         gameViewHolder.awayLogo.setImageResource(getLogo(game.getVTeam().getTriCode()));
 
+    }
+
+    private String getQuarter(GameInfo.Game game) {
+        int quarterNum = game.getPeriod().getCurrent();
+        String quarter;
+
+        switch (quarterNum) {
+            case 1:
+                quarter = "1st";
+                break;
+            case 2:
+                quarter = "2nd";
+                break;
+            case 3:
+                quarter = "3rd";
+                break;
+            case 4:
+                quarter = "4th";
+                break;
+         default:
+             quarter = "0";
+        }
+
+        if (game.getPeriod().getCurrent() > game.getPeriod().getMaxRegular()) {
+            int otQuarter = game.getPeriod().getCurrent() - game.getPeriod().getMaxRegular();
+            quarter = "OT-" + Integer.toString(otQuarter);
+        }
+
+        return quarter;
     }
 
     private int getLogo(String triCode) {
@@ -185,14 +210,12 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
     }
 
     @Override
-    public int getItemCount() {
-        return gameList.getNumGames();
-    }
+    public int getItemCount() { return gameList.getNumGames(); }
 
     public class GameViewHolder extends RecyclerView.ViewHolder {
 
         TextView txtGameTime, txtGameQuarter;
-        TextView txtHomeCity, txtHomeScore;
+        TextView txtHomeCity, txtHomeScore, txtHomeFirstPoints, txtHomeSecondPoints, txtHomeThirdPoints, txtHomeFourthPoints;
         TextView txtAwayCity, txtAwayScore, txtAwayFirstPoints, txtAwaySecondPoints, txtAwayThirdPoints, txtAwayFourthPoints;
         ImageView awayLogo, homeLogo;
 
@@ -202,15 +225,19 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
             txtHomeCity = (TextView) itemView.findViewById(R.id.home_city);
             txtHomeScore = (TextView) itemView.findViewById(R.id.home_score);
             homeLogo = (ImageView) itemView.findViewById(R.id.home_logo);
+            txtHomeFirstPoints = (TextView) itemView.findViewById(R.id.first_score_home);
+            txtHomeSecondPoints = (TextView) itemView.findViewById(R.id.second_score_home);
+            txtHomeThirdPoints = (TextView) itemView.findViewById(R.id.third_score_home);
+            txtHomeFourthPoints = (TextView) itemView.findViewById(R.id.fourth_score_home);
+
 
             txtAwayCity = (TextView) itemView.findViewById(R.id.away_city);
             txtAwayScore = (TextView) itemView.findViewById(R.id.away_score);
+            awayLogo = (ImageView) itemView.findViewById(R.id.away_logo);
             txtAwayFirstPoints = (TextView) itemView.findViewById(R.id.first_score_away);
             txtAwaySecondPoints = (TextView) itemView.findViewById(R.id.second_score_away);
             txtAwayThirdPoints = (TextView) itemView.findViewById(R.id.third_score_away);
             txtAwayFourthPoints = (TextView) itemView.findViewById(R.id.fourth_score_away);
-            awayLogo = (ImageView) itemView.findViewById(R.id.away_logo);
-
 
             txtGameTime = (TextView) itemView.findViewById(R.id.game_time);
             txtGameQuarter = (TextView) itemView.findViewById(R.id.game_quarter);

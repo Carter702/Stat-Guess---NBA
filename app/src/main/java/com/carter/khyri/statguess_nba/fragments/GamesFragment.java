@@ -91,14 +91,13 @@ public class GamesFragment extends Fragment {
         .addConverterFactory(GsonConverterFactory.create());
 
         Retrofit retrofit = builder.build();
-
         ApiService api = retrofit.create(ApiService.class);
 
         Date date = Calendar.getInstance().getTime();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
         curDate = formatter.format(date);
 
-        Call<GameInfo> call = api.getGameData("20190110");
+        Call<GameInfo> call = api.getGameData(curDate);
 
         call.enqueue(new Callback<GameInfo>() {
             @Override
