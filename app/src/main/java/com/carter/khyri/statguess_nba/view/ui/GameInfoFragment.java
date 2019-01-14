@@ -1,4 +1,4 @@
-package com.carter.khyri.statguess_nba.fragments;
+package com.carter.khyri.statguess_nba.view.ui;
 
 import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
@@ -12,9 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.carter.khyri.statguess_nba.R;
-import com.carter.khyri.statguess_nba.adapters.GameAdapter;
-import com.carter.khyri.statguess_nba.models.GameInfo;
-import com.carter.khyri.statguess_nba.network.ApiService;
+import com.carter.khyri.statguess_nba.view.adapter.GameInfoAdapter;
+import com.carter.khyri.statguess_nba.service.model.GameInfo;
+import com.carter.khyri.statguess_nba.service.repository.NbaService;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -26,12 +26,12 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class GamesFragment extends Fragment {
+public class GameInfoFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     RecyclerView mRecyclerView;
-    GameAdapter mGameAdapter;
+    GameInfoAdapter mGameInfoAdapter;
     GameInfo games = new GameInfo();
     String curDate;
 
@@ -44,13 +44,13 @@ public class GamesFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public GamesFragment() {
+    public GameInfoFragment() {
         // Required empty public constructor
     }
 
     // TODO: Rename and change types and number of parameters
-    public static GamesFragment newInstance(String param1, String param2) {
-        GamesFragment fragment = new GamesFragment();
+    public static GameInfoFragment newInstance(String param1, String param2) {
+        GameInfoFragment fragment = new GameInfoFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -81,7 +81,7 @@ public class GamesFragment extends Fragment {
         .addConverterFactory(GsonConverterFactory.create());
 
         Retrofit retrofit = builder.build();
-        ApiService api = retrofit.create(ApiService.class);
+        NbaService api = retrofit.create(NbaService.class);
 
         Date date = Calendar.getInstance().getTime();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
@@ -94,8 +94,8 @@ public class GamesFragment extends Fragment {
             public void onResponse(Call<GameInfo> call, Response<GameInfo> response) {
 
                 games = response.body();
-                mGameAdapter = new GameAdapter(games);
-                mRecyclerView.setAdapter(mGameAdapter);
+                mGameInfoAdapter = new GameInfoAdapter(games);
+                mRecyclerView.setAdapter(mGameInfoAdapter);
 
             }
 

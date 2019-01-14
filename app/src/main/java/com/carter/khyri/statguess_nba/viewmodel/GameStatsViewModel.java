@@ -1,4 +1,4 @@
-package com.carter.khyri.statguess_nba.fragments;
+package com.carter.khyri.statguess_nba.viewmodel;
 
 import android.arch.lifecycle.ViewModel;
 

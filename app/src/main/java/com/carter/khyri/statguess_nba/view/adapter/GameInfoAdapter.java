@@ -1,9 +1,7 @@
-package com.carter.khyri.statguess_nba.adapters;
+package com.carter.khyri.statguess_nba.view.adapter;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,18 +9,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.carter.khyri.statguess_nba.R;
-import com.carter.khyri.statguess_nba.models.GameInfo;
+import com.carter.khyri.statguess_nba.service.model.GameInfo;
 
 
-public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder> {
+public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameViewHolder> {
 
     private GameInfo gameList;
 
-    public GameAdapter(GameInfo gameList) { this.gameList = gameList; }
+    public GameInfoAdapter(GameInfo gameList) { this.gameList = gameList; }
 
     @NonNull
     @Override
-    public GameAdapter.GameViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public GameInfoAdapter.GameViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.item_game, parent, false);
 

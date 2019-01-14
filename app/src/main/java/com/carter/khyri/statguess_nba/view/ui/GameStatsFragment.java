@@ -1,4 +1,4 @@
-package com.carter.khyri.statguess_nba.fragments;
+package com.carter.khyri.statguess_nba.view.ui;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.carter.khyri.statguess_nba.R;
+import com.carter.khyri.statguess_nba.viewmodel.GameStatsViewModel;
 
 public class GameStatsFragment extends Fragment {
 

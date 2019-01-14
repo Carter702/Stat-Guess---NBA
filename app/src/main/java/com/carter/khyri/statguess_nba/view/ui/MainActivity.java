@@ -1,25 +1,18 @@
-package com.carter.khyri.statguess_nba.activities;
+package com.carter.khyri.statguess_nba.view.ui;
 
 import android.support.annotation.NonNull;
-import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
-import android.widget.AdapterView;
 
 import com.carter.khyri.statguess_nba.R;
-import com.carter.khyri.statguess_nba.fragments.GamesFragment;
-import com.carter.khyri.statguess_nba.fragments.HistoryFragment;
-import com.carter.khyri.statguess_nba.fragments.ProfileFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    final Fragment gameFrag = new GamesFragment();
+    final Fragment gameFrag = new GameInfoFragment();
     final Fragment profileFrag = new ProfileFragment();
     final Fragment historyFrag = new HistoryFragment();
     final FragmentManager fm = getSupportFragmentManager();

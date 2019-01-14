@@ -1,4 +1,4 @@
-package com.carter.khyri.statguess_nba.models;
+package com.carter.khyri.statguess_nba.service.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
