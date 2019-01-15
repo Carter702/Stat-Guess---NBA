@@ -15,5 +15,5 @@ public interface NbaService {
     Call<GameInfo> getGameData(@Path("date") String date);
 
     @GET("/prod/v1/{date}/{gameId}_boxscore.json")
-    Call<GameInfo> getGame(@Path("date") String date, @Path("gameId") String gameId);
+    Call<GameInfo> getGameStats(@Path("date") String date, @Path("gameId") String gameId);
 }

@@ -24,8 +24,7 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.item_game, parent, false);
 
-        GameViewHolder gameViewHolder = new GameViewHolder(view);
-        return gameViewHolder;
+        return new GameViewHolder(view);
     }
 
     @Override

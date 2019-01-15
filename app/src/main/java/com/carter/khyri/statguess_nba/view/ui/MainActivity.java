@@ -62,11 +62,4 @@ public class MainActivity extends AppCompatActivity {
         fm.beginTransaction().add(R.id.container, historyFrag, "2").hide(historyFrag).commit();
         fm.beginTransaction().add(R.id.container,gameFrag, "1").commit();
     }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-
-
-    }
 }
