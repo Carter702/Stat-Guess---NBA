@@ -23,4 +23,5 @@ public class GameInfoViewModel extends ViewModel {
     public MutableLiveData<GameInfo> getGames() {
         return gameRepository.getGameData();
     }
+
 }

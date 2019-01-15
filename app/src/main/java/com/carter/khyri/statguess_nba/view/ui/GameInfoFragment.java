@@ -43,8 +43,6 @@ public class GameInfoFragment extends Fragment {
 
     public GameInfoFragment() { }
 
-    public static GameInfoFragment newInstance() {  return new GameInfoFragment();    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,23 +61,23 @@ public class GameInfoFragment extends Fragment {
         mViewModel = ViewModelProviders.of(this).get(GameInfoViewModel.class);
         //((LinearLayoutManager) mlayoutManager).setOrientation(LinearLayoutManager.VERTICAL);
 
-        Log.i("DEBUG", "onCreateView: WE ARE HERE");
         mViewModel.getGames().observe(this, new Observer<GameInfo>() {
             @Override
             public void onChanged(@Nullable GameInfo game) {
                 mGameInfoAdapter = new GameInfoAdapter(game);
                 mRecyclerView.setAdapter(mGameInfoAdapter);
                 games = game;
-                if(game != null)
-                    Log.i("DEBUG", game.getGames().get(0).getHTeam().getTriCode());
             }
         });
 
-
-
-
-
         return view;
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden == true)
+            Log.i(TAG, "onHiddenChanged: HIDDEN NOW");
     }
 
     @Override
