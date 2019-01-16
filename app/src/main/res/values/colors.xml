@@ -11,6 +11,6 @@
     <color name="white">#FFFFFF</color>
 
     <!-- material colors -->
-    <color name="materialOrange">#d84315</color>
+    <color name="materialOrange">#D84315</color>
     <color name="materialWhite">#fafafa</color>
 </resources>

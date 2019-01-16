@@ -1,7 +1,9 @@
 package com.carter.khyri.statguess_nba.view.adapter;
 
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +15,6 @@ import com.carter.khyri.statguess_nba.service.model.GameInfo;
 
 
 public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameViewHolder> {
-
     private GameInfo gameList;
 
     public GameInfoAdapter(GameInfo gameList) { this.gameList = gameList; }
@@ -31,7 +32,14 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
     public void onBindViewHolder(@NonNull GameViewHolder gameViewHolder, int position) {
 
         GameInfo.Game game = gameList.getGames().get(position);
-
+        gameViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView tview = v.findViewById(R.id.home_city);
+                String text = tview.getText().toString();
+                Log.i("DEBUG", "onClick: THIS HAS BEEN CLICKED: " + text);
+            }
+        });
         String hTeam = game.getHTeam().getTriCode();
         String hScore = game.getHTeam().getScore();
         String aTeam = game.getVTeam().getTriCode();
@@ -211,7 +219,7 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
     public int getItemCount() { return gameList.getNumGames(); }
 
     public class GameViewHolder extends RecyclerView.ViewHolder {
-
+        CardView cardView;
         TextView txtGameTime, txtGameQuarter;
         TextView txtHomeCity, txtHomeScore, txtHomeFirstPoints, txtHomeSecondPoints, txtHomeThirdPoints, txtHomeFourthPoints;
         TextView txtAwayCity, txtAwayScore, txtAwayFirstPoints, txtAwaySecondPoints, txtAwayThirdPoints, txtAwayFourthPoints;
@@ -219,7 +227,7 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
 
         public GameViewHolder(View itemView) {
             super(itemView);
-
+            cardView = (CardView) itemView.findViewById(R.id.game_card);
             txtHomeCity = (TextView) itemView.findViewById(R.id.home_city);
             txtHomeScore = (TextView) itemView.findViewById(R.id.home_score);
             homeLogo = (ImageView) itemView.findViewById(R.id.home_logo);

@@ -4,6 +4,8 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,12 +21,13 @@ import com.carter.khyri.statguess_nba.service.model.GameInfo;
 import com.carter.khyri.statguess_nba.viewmodel.GameInfoViewModel;
 
 
-public class GameInfoFragment extends android.support.v4.app.Fragment {
-
+public class GameInfoFragment extends Fragment {
     GameInfoViewModel mViewModel;
     GameInfo games = new GameInfo();
     RecyclerView mRecyclerView;
     GameInfoAdapter mGameInfoAdapter;
+    CardView mCardView;
+
     private static final String TAG = "DEBUG";
 
     public GameInfoFragment() { }
@@ -38,14 +41,14 @@ public class GameInfoFragment extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_games, container, false);
+        mCardView = (CardView) view.findViewById(R.id.game_card);
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.game_recycler);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(mGameInfoAdapter);
-        mViewModel = ViewModelProviders.of(this).get(GameInfoViewModel.class);
-        //((LinearLayoutManager) mlayoutManager).setOrientation(LinearLayoutManager.VERTICAL);
 
+        mViewModel = ViewModelProviders.of(this).get(GameInfoViewModel.class);
         mViewModel.getGames().observe(this, new Observer<GameInfo>() {
             @Override
             public void onChanged(@Nullable GameInfo game) {
@@ -77,4 +80,5 @@ public class GameInfoFragment extends android.support.v4.app.Fragment {
     public void onDetach() {
         super.onDetach();
     }
+
 }

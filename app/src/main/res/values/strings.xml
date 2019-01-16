@@ -28,6 +28,13 @@
     <string name="four">4</string>
     <string name="total">T</string>
 
+    <!-- Game Stats fragment text -->
+    <string name="most_points">Most Points</string>
+    <string name="most_rebounds">Most Rebounds</string>
+    <string name="most_assists">Most Assists</string>
+    <string name="game_winner">Game Winner</string>
+    <string name="winner_switch">Choose</string>
+
     <!-- Profile fragment text -->
     <string name="profile_test">Profile Fragment</string>
 
