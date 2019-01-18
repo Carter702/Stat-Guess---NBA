@@ -56,13 +56,12 @@
     <TextView
         android:id="@+id/most_points"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="8dp"
+        style="@style/GameStatLabels"
         android:text="@string/most_points"
-        android:textColor="@color/materialWhite"
-        android:textSize="@dimen/font_huge"
         app:layout_constraintEnd_toStartOf="@+id/button_home_points"
         app:layout_constraintStart_toEndOf="@+id/button_away_points"
         app:layout_constraintTop_toTopOf="@+id/guideline3" />
@@ -74,9 +73,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="52dp"
         android:layout_marginEnd="8dp"
+        style="@style/GameStatLabels"
         android:text="@string/most_rebounds"
-        android:textColor="@color/materialWhite"
-        android:textSize="@dimen/font_huge"
         app:layout_constraintEnd_toStartOf="@+id/button_home_rebounds"
         app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toEndOf="@+id/button_away_rebounds"
@@ -89,9 +87,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="52dp"
         android:layout_marginEnd="8dp"
+        style="@style/GameStatLabels"
         android:text="@string/most_assists"
-        android:textColor="@color/materialWhite"
-        android:textSize="@dimen/font_huge"
         app:layout_constraintEnd_toStartOf="@+id/button_home_assists"
         app:layout_constraintStart_toEndOf="@+id/button_away_assists"
         app:layout_constraintTop_toBottomOf="@+id/most_rebounds" />
@@ -103,9 +100,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="52dp"
         android:layout_marginEnd="8dp"
+        style="@style/GameStatLabels"
         android:text="@string/game_winner"
-        android:textColor="@color/materialWhite"
-        android:textSize="@dimen/font_huge"
         app:layout_constraintEnd_toStartOf="@+id/button_winner_home"
         app:layout_constraintHorizontal_bias="0.541"
         app:layout_constraintStart_toEndOf="@+id/button_winner_away"
@@ -117,7 +113,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="44dp"
-        android:text="Button"
+        style="@style/ButtonView"
+        android:text="@string/button_choose"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
@@ -127,7 +124,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="44dp"
-        android:text="Button"
+        style="@style/ButtonView"
+        android:text="@string/button_choose"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_away_points" />
 
@@ -137,7 +135,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="44dp"
-        android:text="Button"
+        style="@style/ButtonView"
+        android:text="@string/button_choose"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_away_rebounds" />
 
@@ -147,7 +146,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:layout_marginEnd="8dp"
-        android:text="Button"
+        style="@style/ButtonView"
+        android:text="@string/button_choose"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
@@ -155,9 +155,10 @@
         android:id="@+id/button_home_rebounds"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="20dp"
-        android:text="Button"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="8dp"
+        style="@style/ButtonView"
+        android:text="@string/button_choose"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_home_points" />
 
@@ -167,7 +168,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:layout_marginEnd="8dp"
-        android:text="Button"
+        style="@style/ButtonView"
+        android:text="@string/button_choose"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_home_rebounds" />
 
@@ -177,7 +179,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="44dp"
-        android:text="Button"
+        style="@style/ButtonView"
+        android:text="@string/button_choose"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_away_assists" />
 
@@ -187,7 +190,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:layout_marginEnd="8dp"
-        android:text="Button"
+        style="@style/ButtonView"
+        android:text="@string/button_choose"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_home_assists" />
 
