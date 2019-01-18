@@ -31,7 +31,7 @@ public class GameRepository {
         curDate = formatter.format(date);
 
         nbaService = RetrofitRequest.getRetroInstance().create(NbaService.class);
-        Call<GameInfo> call = nbaService.getGameData(curDate);
+        Call<GameInfo> call = nbaService.getGameData("20190117");
 
         call.enqueue(new Callback<GameInfo>() {
             @Override

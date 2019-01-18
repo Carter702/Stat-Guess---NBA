@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.carter.khyri.statguess_nba.R;
 import com.carter.khyri.statguess_nba.service.model.GameInfo;
 
+import org.w3c.dom.Text;
+
 
 public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameViewHolder> {
     private GameInfo gameList;
@@ -40,12 +42,19 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
                 Log.i("DEBUG", "onClick: THIS HAS BEEN CLICKED: " + text);
             }
         });
+
         String hTeam = game.getHTeam().getTriCode();
         String hScore = game.getHTeam().getScore();
         String aTeam = game.getVTeam().getTriCode();
         String aScore = game.getVTeam().getScore();
         String quarter = getQuarter(game);
         String clock = game.getClock();
+        if(game.getPeriod().getCurrent() > 4) {
+            getOvertimePoints(gameViewHolder, game);
+            gameViewHolder.txtAwayaOtPoints.setVisibility(View.VISIBLE);
+            gameViewHolder.txtHomeOtPoints.setVisibility(View.VISIBLE);
+            gameViewHolder.txtGameOt.setVisibility(View.VISIBLE);
+        }
 
         if (clock.isEmpty() && quarter.equals("0")) {
             clock = game.getStartTimeEastern();
@@ -62,19 +71,18 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
         gameViewHolder.txtGameTime.setText(clock);
 
         gameViewHolder.txtHomeCity.setText(hTeam);
-        gameViewHolder.homeLogo.setImageResource(getLogo(game.getHTeam().getTriCode()));
         gameViewHolder.txtHomeScore.setText(hScore);
+        gameViewHolder.homeLogo.setImageResource(getLogo(hTeam));
+
+        gameViewHolder.txtAwayCity.setText(aTeam);
+        gameViewHolder.txtAwayScore.setText(aScore);
+        gameViewHolder.awayLogo.setImageResource(getLogo(aTeam));
+
         if( !(game.getHTeam().getLinescore().isEmpty()) ) {
             gameViewHolder.txtHomeFirstPoints.setText(game.getHTeam().getLinescore().get(0).getScore());
             gameViewHolder.txtHomeSecondPoints.setText(game.getHTeam().getLinescore().get(1).getScore());
             gameViewHolder.txtHomeThirdPoints.setText(game.getHTeam().getLinescore().get(2).getScore());
             gameViewHolder.txtHomeFourthPoints.setText(game.getHTeam().getLinescore().get(3).getScore());
-        }
-
-        gameViewHolder.txtAwayCity.setText(aTeam);
-        gameViewHolder.txtAwayScore.setText(aScore);
-        gameViewHolder.awayLogo.setImageResource(getLogo(game.getVTeam().getTriCode()));
-        if( !(game.getVTeam().getLinescore().isEmpty()) ) {
             gameViewHolder.txtAwayFirstPoints.setText(game.getVTeam().getLinescore().get(0).getScore());
             gameViewHolder.txtAwaySecondPoints.setText(game.getVTeam().getLinescore().get(1).getScore());
             gameViewHolder.txtAwayThirdPoints.setText(game.getVTeam().getLinescore().get(2).getScore());
@@ -100,13 +108,17 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
             case 4:
                 quarter = "4th";
                 break;
+            case 5:
+                quarter = "OT-1";
+                        break;
+            case 6:
+                quarter = "OT-2";
+                break;
+            case 7:
+                quarter = "OT-3";
+                break;
          default:
-             quarter = "0";
-        }
-
-        if (game.getPeriod().getCurrent() > game.getPeriod().getMaxRegular()) {
-            int otQuarter = game.getPeriod().getCurrent() - game.getPeriod().getMaxRegular();
-            quarter = "OT-" + Integer.toString(otQuarter);
+             quarter = "";
         }
 
         return quarter;
@@ -215,14 +227,28 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
         return resource;
     }
 
+    private void getOvertimePoints(GameViewHolder viewHolder, GameInfo.Game game) {
+        int totalHome = 0, totalAway = 0;
+        int end = game.getPeriod().getCurrent();
+        int index = game.getPeriod().getMaxRegular();
+
+        for (int i = index; i < end; i++) {
+            totalAway += Integer.parseInt(game.getVTeam().getLinescore().get(i).getScore());
+            totalHome += Integer.parseInt(game.getHTeam().getLinescore().get(i).getScore());
+        }
+
+        viewHolder.txtHomeOtPoints.setText(Integer.toString(totalHome));
+        viewHolder.txtAwayaOtPoints.setText(Integer.toString(totalAway));
+    }
+
     @Override
     public int getItemCount() { return gameList.getNumGames(); }
 
     public class GameViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
-        TextView txtGameTime, txtGameQuarter;
-        TextView txtHomeCity, txtHomeScore, txtHomeFirstPoints, txtHomeSecondPoints, txtHomeThirdPoints, txtHomeFourthPoints;
-        TextView txtAwayCity, txtAwayScore, txtAwayFirstPoints, txtAwaySecondPoints, txtAwayThirdPoints, txtAwayFourthPoints;
+        TextView txtGameTime, txtGameQuarter, txtGameOt;
+        TextView txtHomeCity, txtHomeScore, txtHomeFirstPoints, txtHomeSecondPoints, txtHomeThirdPoints, txtHomeFourthPoints, txtHomeOtPoints;
+        TextView txtAwayCity, txtAwayScore, txtAwayFirstPoints, txtAwaySecondPoints, txtAwayThirdPoints, txtAwayFourthPoints, txtAwayaOtPoints;
         ImageView awayLogo, homeLogo;
 
         public GameViewHolder(View itemView) {
@@ -235,6 +261,7 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
             txtHomeSecondPoints = (TextView) itemView.findViewById(R.id.second_score_home);
             txtHomeThirdPoints = (TextView) itemView.findViewById(R.id.third_score_home);
             txtHomeFourthPoints = (TextView) itemView.findViewById(R.id.fourth_score_home);
+            txtHomeOtPoints = (TextView) itemView.findViewById(R.id.ot_score_home);
 
 
             txtAwayCity = (TextView) itemView.findViewById(R.id.away_city);
@@ -244,10 +271,11 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
             txtAwaySecondPoints = (TextView) itemView.findViewById(R.id.second_score_away);
             txtAwayThirdPoints = (TextView) itemView.findViewById(R.id.third_score_away);
             txtAwayFourthPoints = (TextView) itemView.findViewById(R.id.fourth_score_away);
+            txtAwayaOtPoints = (TextView) itemView.findViewById(R.id.ot_score_away);
 
             txtGameTime = (TextView) itemView.findViewById(R.id.game_time);
             txtGameQuarter = (TextView) itemView.findViewById(R.id.game_quarter);
-
+            txtGameOt = (TextView) itemView.findViewById(R.id.ot_total);
         }
 
     }

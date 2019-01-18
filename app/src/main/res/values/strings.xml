@@ -27,6 +27,7 @@
     <string name="three">3</string>
     <string name="four">4</string>
     <string name="total">T</string>
+    <string name="overtime">OT</string>
 
     <!-- Game Stats fragment text -->
     <string name="most_points">Most Points</string>

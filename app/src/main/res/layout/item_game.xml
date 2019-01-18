@@ -13,18 +13,18 @@
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:layout_gravity="center"
-        app:cardBackgroundColor="@color/colorPrimaryDark"
-        app:cardCornerRadius="4dp"
         android:clickable="true"
         android:focusable="true"
-        android:foreground="?android:selectableItemBackground">
+        android:foreground="?android:selectableItemBackground"
+        app:cardBackgroundColor="@color/colorPrimaryDark"
+        app:cardCornerRadius="4dp">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <View
-                android:id="@+id/view"
+                android:id="@+id/card_divider"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginStart="8dp"
@@ -40,8 +40,8 @@
                 android:id="@+id/home_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginBottom="28dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="24dp"
                 android:text="@string/home_city"
                 android:textColor="@color/materialWhite"
                 android:textSize="@dimen/font_large"
@@ -54,51 +54,49 @@
                 android:id="@+id/away_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="48dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="24dp"
                 android:text="@string/away_city"
                 android:textColor="@color/materialWhite"
                 android:textSize="@dimen/font_large"
-                app:layout_constraintEnd_toStartOf="@+id/away_logo"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/card_divider" />
 
             <TextView
                 android:id="@+id/away_score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
-                android:layout_marginEnd="16dp"
                 android:text="@string/away_score"
                 android:textColor="@color/materialWhite"
                 android:textSize="@dimen/font_normal"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/final_scores" />
 
             <TextView
                 android:id="@+id/home_score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
                 android:layout_marginBottom="28dp"
                 android:text="@string/home_score"
                 android:textColor="@color/materialWhite"
                 android:textSize="@dimen/font_normal"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline2" />
 
             <TextView
                 android:id="@+id/game_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:text="@string/clock_time"
                 android:textColor="@color/materialWhite"
                 android:textSize="@dimen/font_normal"
-                app:layout_constraintBottom_toBottomOf="@+id/view"
+                app:layout_constraintBottom_toBottomOf="@+id/card_divider"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -117,22 +115,19 @@
                 android:id="@+id/away_logo"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toStartOf="@+id/guideline"
-                app:layout_constraintHorizontal_bias="0.5"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintStart_toEndOf="@+id/away_city"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/card_divider"
                 app:srcCompat="@android:color/darker_gray" />
 
             <ImageView
                 android:id="@+id/home_logo"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginStart="4dp"
                 android:layout_marginBottom="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintStart_toEndOf="@+id/home_city"
                 app:srcCompat="@color/colorAccent" />
 
@@ -144,7 +139,7 @@
                 android:layout_marginBottom="8dp"
                 android:text="@string/one"
                 android:textColor="@color/materialWhite"
-                app:layout_constraintBottom_toBottomOf="@+id/view"
+                app:layout_constraintBottom_toBottomOf="@+id/card_divider"
                 app:layout_constraintEnd_toStartOf="@+id/second_total"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/game_quarter"
@@ -159,7 +154,7 @@
                 android:layout_marginBottom="8dp"
                 android:text="@string/two"
                 android:textColor="@color/materialWhite"
-                app:layout_constraintBottom_toBottomOf="@+id/view"
+                app:layout_constraintBottom_toBottomOf="@+id/card_divider"
                 app:layout_constraintEnd_toStartOf="@+id/third_total"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/first_total"
@@ -173,7 +168,7 @@
                 android:layout_marginBottom="8dp"
                 android:text="@string/three"
                 android:textColor="@color/materialWhite"
-                app:layout_constraintBottom_toBottomOf="@+id/view"
+                app:layout_constraintBottom_toBottomOf="@+id/card_divider"
                 app:layout_constraintEnd_toStartOf="@+id/fourth_total"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/second_total"
@@ -187,8 +182,8 @@
                 android:layout_marginBottom="8dp"
                 android:text="@string/four"
                 android:textColor="@color/materialWhite"
-                app:layout_constraintBottom_toBottomOf="@+id/view"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintBottom_toBottomOf="@+id/card_divider"
+                app:layout_constraintEnd_toStartOf="@+id/ot_total"
                 app:layout_constraintStart_toEndOf="@+id/third_total"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -197,18 +192,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
                 android:layout_marginBottom="8dp"
                 android:text="@string/total"
                 android:textColor="@color/materialWhite"
-                app:layout_constraintBottom_toBottomOf="@+id/view"
+                app:layout_constraintBottom_toBottomOf="@+id/card_divider"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/first_score_away"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
                 android:text="@string/zero"
                 android:textColor="@color/materialWhite"
                 app:layout_constraintBaseline_toBaselineOf="@+id/away_score"
@@ -247,7 +243,7 @@
                 android:text="@string/zero"
                 android:textColor="@color/materialWhite"
                 app:layout_constraintBaseline_toBaselineOf="@+id/third_score_away"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintEnd_toStartOf="@+id/ot_score_away"
                 app:layout_constraintStart_toEndOf="@+id/third_score_away" />
 
             <android.support.constraint.Guideline
@@ -255,19 +251,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_begin="126dp" />
+                app:layout_constraintGuide_begin="130dp" />
 
             <android.support.constraint.Guideline
                 android:id="@+id/guideline2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_begin="227dp" />
+                app:layout_constraintGuide_begin="296dp" />
 
             <TextView
                 android:id="@+id/first_score_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
                 android:text="@string/zero"
                 android:textColor="@color/materialWhite"
                 app:layout_constraintBaseline_toBaselineOf="@+id/home_score"
@@ -305,9 +302,40 @@
                 android:text="@string/zero"
                 android:textColor="@color/materialWhite"
                 app:layout_constraintBaseline_toBaselineOf="@+id/third_score_home"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toStartOf="@+id/ot_score_home"
                 app:layout_constraintStart_toEndOf="@+id/third_score_home" />
+
+            <TextView
+                android:id="@+id/ot_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/overtime"
+                android:textColor="@color/materialWhite"
+                android:visibility="invisible"
+                app:layout_constraintBaseline_toBaselineOf="@+id/fourth_total"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2" />
+
+            <TextView
+                android:id="@+id/ot_score_away"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:text="@string/zero"
+                android:textColor="@color/materialWhite"
+                android:visibility="invisible"
+                app:layout_constraintBaseline_toBaselineOf="@+id/fourth_score_away"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2" />
+
+            <TextView
+                android:id="@+id/ot_score_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:text="@string/zero"
+                android:textColor="@color/materialWhite"
+                android:visibility="invisible"
+                app:layout_constraintBaseline_toBaselineOf="@+id/fourth_score_home"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2" />
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
