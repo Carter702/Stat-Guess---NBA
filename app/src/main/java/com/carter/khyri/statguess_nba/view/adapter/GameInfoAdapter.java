@@ -118,7 +118,7 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
                 quarter = "OT-3";
                 break;
          default:
-             quarter = "";
+             quarter = "0";
         }
 
         return quarter;
