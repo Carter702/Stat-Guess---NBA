@@ -23,10 +23,6 @@ public class GameInfo {
         return internal;
     }
 
-    public void setInternal(Internal internal) {
-        this.internal = internal;
-    }
-
     public int getNumGames() {
         return numGames;
     }
