@@ -4,16 +4,18 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
 import com.carter.khyri.statguess_nba.service.model.GameInfo;
+import com.carter.khyri.statguess_nba.service.model.GameStat;
 import com.carter.khyri.statguess_nba.service.repository.GameRepository;
 
 public class GameStatsViewModel extends ViewModel {
-//    private GameRepository gameRepository;
-//
-//    public GameStatsViewModel() {
-//        gameRepository = new GameRepository();
-//    }
-//
-//    public MutableLiveData<GameInfo> getStats() {
-//        return gameRepository.getGameStats();
-//    }
+    private GameRepository gameRepository;
+
+    public GameStatsViewModel() {
+        gameRepository = new GameRepository();
+    }
+
+    public MutableLiveData<GameStat> getGameStats() {
+        return gameRepository.getGameStats();
+    }
+
 }

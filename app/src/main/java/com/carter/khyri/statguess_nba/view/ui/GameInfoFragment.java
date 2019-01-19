@@ -27,8 +27,7 @@ public class GameInfoFragment extends Fragment {
     RecyclerView mRecyclerView;
     GameInfoAdapter mGameInfoAdapter;
     CardView mCardView;
-
-    private static final String TAG = "DEBUG";
+    Fragment hostedFragment = new GameStatsFragment();
 
     public GameInfoFragment() { }
 

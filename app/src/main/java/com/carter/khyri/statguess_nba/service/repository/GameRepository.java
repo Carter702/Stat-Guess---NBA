@@ -2,9 +2,11 @@ package com.carter.khyri.statguess_nba.service.repository;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.support.constraint.solver.Cache;
 import android.util.Log;
 
 import com.carter.khyri.statguess_nba.service.model.GameInfo;
+import com.carter.khyri.statguess_nba.service.model.GameStat;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -17,21 +19,18 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class GameRepository {
-
     private NbaService nbaService;
-    private String curDate;
+    String gameId;
+
+    public GameRepository(String id) {this.gameId = id;}
 
     public GameRepository() {}
 
     public MutableLiveData<GameInfo> getGameData() {
         final MutableLiveData<GameInfo> data = new MutableLiveData<>();
 
-        Date date = Calendar.getInstance().getTime();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
-        curDate = formatter.format(date);
-
         nbaService = RetrofitRequest.getRetroInstance().create(NbaService.class);
-        Call<GameInfo> call = nbaService.getGameData(curDate);
+        Call<GameInfo> call = nbaService.getGameData(getDate());
 
         call.enqueue(new Callback<GameInfo>() {
             @Override
@@ -51,5 +50,23 @@ public class GameRepository {
         });
 
         return data;
+    }
+
+    public MutableLiveData<GameStat> getGameStats() {
+        final MutableLiveData<GameStat> data = new MutableLiveData<>();
+
+        nbaService = RetrofitRequest.getRetroInstance().create(NbaService.class);
+        Call<GameStat> call = nbaService.getGameStats(getDate(), "0021800676");
+
+        return data;
+    }
+
+    private String getDate() {
+        String curDate = "";
+        Date date = Calendar.getInstance().getTime();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+        curDate = formatter.format(date);
+
+        return curDate;
     }
 }
