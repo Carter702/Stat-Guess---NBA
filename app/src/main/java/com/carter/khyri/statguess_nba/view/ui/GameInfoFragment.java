@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.carter.khyri.statguess_nba.R;
 import com.carter.khyri.statguess_nba.view.adapter.GameInfoAdapter;
@@ -26,8 +27,6 @@ public class GameInfoFragment extends Fragment {
     GameInfo games = new GameInfo();
     RecyclerView mRecyclerView;
     GameInfoAdapter mGameInfoAdapter;
-    CardView mCardView;
-    Fragment hostedFragment = new GameStatsFragment();
 
     public GameInfoFragment() { }
 
@@ -40,7 +39,6 @@ public class GameInfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_games, container, false);
-        mCardView = (CardView) view.findViewById(R.id.game_card);
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.game_recycler);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

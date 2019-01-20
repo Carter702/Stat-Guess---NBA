@@ -38,15 +38,9 @@ public class GameStatsFragment extends Fragment {
         Button mHomePoints = view.findViewById(R.id.button_away_points);
         Button mAwayPoints = view.findViewById(R.id.button_home_points);
 
-        mHomePoints.setText(gameStat.getStats().getHTeam().getPointsInPaint());
-        mHomePoints.setText(gameStat.getStats().getVTeam().getPointsInPaint());
+        //mHomePoints.setText(gameStat.getStats().getHTeam().getPointsInPaint());
+        //mHomePoints.setText(gameStat.getStats().getVTeam().getPointsInPaint());
 
-        mHomePoints.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), "Sharing...", Toast.LENGTH_LONG).show();
-            }
-        });
         return view;
     }
 

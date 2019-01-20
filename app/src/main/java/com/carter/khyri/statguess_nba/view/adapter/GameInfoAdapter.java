@@ -1,8 +1,10 @@
 package com.carter.khyri.statguess_nba.view.adapter;
 
-import android.media.Image;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 import com.carter.khyri.statguess_nba.R;
 import com.carter.khyri.statguess_nba.service.model.GameInfo;
 import com.carter.khyri.statguess_nba.service.model.GameStat;
+import com.carter.khyri.statguess_nba.view.ui.GameStatsFragment;
 
 
 public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameViewHolder> {
@@ -25,8 +28,12 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
     @NonNull
     @Override
     public GameInfoAdapter.GameViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.card_game, parent, false);
+        View view = layoutInflater.inflate(R.layout.item_game, parent, false);
+
+        RecyclerView.ViewHolder gameViewHolder = new GameViewHolder(view);
+
 
         return new GameViewHolder(view);
     }
@@ -35,15 +42,6 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
     public void onBindViewHolder(@NonNull GameViewHolder gameViewHolder, int position) {
 
         GameInfo.Game game = gameList.getGames().get(position);
-        gameViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TextView tview = v.findViewById(R.id.home_city);
-                String text = tview.getText().toString();
-                Log.i("DEBUG", "onClick: THIS HAS BEEN CLICKED: " + text);
-            }
-        });
-
         String hTeam = game.getHTeam().getTriCode();
         String hScore = game.getHTeam().getScore();
         String aTeam = game.getVTeam().getTriCode();
@@ -92,6 +90,15 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
             gameViewHolder.txtAwayThirdPoints.setText(game.getVTeam().getLinescore().get(2).getScore());
             gameViewHolder.txtAwayFourthPoints.setText(game.getVTeam().getLinescore().get(3).getScore());
         }
+
+        ((GameViewHolder) gameViewHolder).cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                GameStatsFragment gameStat = new GameStatsFragment();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.game_info_container, gameStat).addToBackStack(null).commit();
+            }
+        });
 
     }
 
