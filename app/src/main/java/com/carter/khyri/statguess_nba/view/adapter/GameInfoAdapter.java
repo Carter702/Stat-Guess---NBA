@@ -1,9 +1,8 @@
 package com.carter.khyri.statguess_nba.view.adapter;
 
+import android.media.Image;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -15,9 +14,7 @@ import android.widget.TextView;
 
 import com.carter.khyri.statguess_nba.R;
 import com.carter.khyri.statguess_nba.service.model.GameInfo;
-import com.carter.khyri.statguess_nba.view.ui.GameStatsFragment;
-
-import org.w3c.dom.Text;
+import com.carter.khyri.statguess_nba.service.model.GameStat;
 
 
 public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameViewHolder> {
@@ -29,7 +26,7 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
     @Override
     public GameInfoAdapter.GameViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.item_game, parent, false);
+        View view = layoutInflater.inflate(R.layout.card_game, parent, false);
 
         return new GameViewHolder(view);
     }
@@ -71,6 +68,7 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
         else if (game.getStatusNum() == 3) {
             clock = "FINAL";
             quarter = "";
+            labelWInner(gameViewHolder, game);
         }
 
         gameViewHolder.txtGameQuarter.setText(quarter);
@@ -247,6 +245,25 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
         viewHolder.txtAwayaOtPoints.setText(Integer.toString(totalAway));
     }
 
+    private void labelWInner(GameViewHolder viewHolder, GameInfo.Game game) {
+        int homeScore = Integer.parseInt(game.getHTeam().getScore());
+        int awayScore = Integer.parseInt(game.getVTeam().getScore());
+        int orange = ContextCompat.getColor(viewHolder.itemView.getContext(), R.color.materialOrange);
+        int white = ContextCompat.getColor(viewHolder.itemView.getContext(), R.color.materialWhite);
+        if (homeScore > awayScore) {
+            viewHolder.homeWinner.setVisibility(View.VISIBLE);
+            viewHolder.txtHomeScore.setTextColor(orange);
+            viewHolder.awayWinner.setVisibility(View.INVISIBLE);
+            viewHolder.txtAwayScore.setTextColor(white);
+        }
+        else {
+            viewHolder.awayWinner.setVisibility(View.VISIBLE);
+            viewHolder.txtAwayScore.setTextColor(orange);
+            viewHolder.homeWinner.setVisibility(View.INVISIBLE);
+            viewHolder.txtHomeScore.setTextColor(white);
+        }
+    }
+
     @Override
     public int getItemCount() { return gameList.getNumGames(); }
 
@@ -255,7 +272,7 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
         TextView txtGameTime, txtGameQuarter, txtGameOt;
         TextView txtHomeCity, txtHomeScore, txtHomeFirstPoints, txtHomeSecondPoints, txtHomeThirdPoints, txtHomeFourthPoints, txtHomeOtPoints;
         TextView txtAwayCity, txtAwayScore, txtAwayFirstPoints, txtAwaySecondPoints, txtAwayThirdPoints, txtAwayFourthPoints, txtAwayaOtPoints;
-        ImageView awayLogo, homeLogo;
+        ImageView awayLogo, homeLogo, awayWinner, homeWinner;
 
         public GameViewHolder(View itemView) {
             super(itemView);
@@ -263,6 +280,7 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
             txtHomeCity = (TextView) itemView.findViewById(R.id.home_city);
             txtHomeScore = (TextView) itemView.findViewById(R.id.home_score);
             homeLogo = (ImageView) itemView.findViewById(R.id.home_logo);
+            homeWinner = (ImageView) itemView.findViewById(R.id.winner_home);
             txtHomeFirstPoints = (TextView) itemView.findViewById(R.id.first_score_home);
             txtHomeSecondPoints = (TextView) itemView.findViewById(R.id.second_score_home);
             txtHomeThirdPoints = (TextView) itemView.findViewById(R.id.third_score_home);
@@ -273,6 +291,7 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
             txtAwayCity = (TextView) itemView.findViewById(R.id.away_city);
             txtAwayScore = (TextView) itemView.findViewById(R.id.away_score);
             awayLogo = (ImageView) itemView.findViewById(R.id.away_logo);
+            awayWinner = (ImageView) itemView.findViewById(R.id.winner_away);
             txtAwayFirstPoints = (TextView) itemView.findViewById(R.id.first_score_away);
             txtAwaySecondPoints = (TextView) itemView.findViewById(R.id.second_score_away);
             txtAwayThirdPoints = (TextView) itemView.findViewById(R.id.third_score_away);
