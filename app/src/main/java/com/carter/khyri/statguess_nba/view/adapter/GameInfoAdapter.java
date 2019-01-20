@@ -60,13 +60,15 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
             gameViewHolder.txtGameOt.setVisibility(View.VISIBLE);
         }
 
-        if (clock.isEmpty() && quarter.equals("0")) {
+        if (game.getStatusNum() == 1) {
             clock = game.getStartTimeEastern();
             quarter = "";
         }
-        else if ((game.getPeriod().isIsHalftime()))
+        else if ((game.getPeriod().isIsHalftime())) {
             clock = "HALFTIME";
-        else if (clock.isEmpty() && quarter.equals("4th")) {
+            quarter = "";
+        }
+        else if (game.getStatusNum() == 3) {
             clock = "FINAL";
             quarter = "";
         }
