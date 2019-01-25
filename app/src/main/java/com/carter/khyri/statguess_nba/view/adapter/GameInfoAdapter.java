@@ -1,5 +1,6 @@
 package com.carter.khyri.statguess_nba.view.adapter;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -15,12 +16,21 @@ import android.widget.TextView;
 import com.carter.khyri.statguess_nba.R;
 import com.carter.khyri.statguess_nba.service.model.GameInfo;
 import com.carter.khyri.statguess_nba.view.ui.GameStatsFragment;
+import com.carter.khyri.statguess_nba.viewmodel.SharedViewModel;
 
 
 public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameViewHolder> {
     private GameInfo gameList;
+    private ClickListener mListener;
 
-    public GameInfoAdapter(GameInfo gameList) { this.gameList = gameList; }
+    public interface ClickListener {
+        void onItemClicked(GameInfo.Game game);
+    }
+
+    public GameInfoAdapter(GameInfo gameList, ClickListener listener) {
+        this.gameList = gameList;
+        this.mListener = listener;
+    }
 
     @NonNull
     @Override
@@ -88,10 +98,11 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
         ((GameViewHolder) gameViewHolder).cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                GameStatsFragment gameStat = new GameStatsFragment();
-                gameStat.setGameID(game.getGameId());
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.game_info_container, gameStat).addToBackStack(null).commit();
+                mListener.onItemClicked(game);
+//                AppCompatActivity activity = (AppCompatActivity) v.getContext();
+//                GameStatsFragment gameStat = new GameStatsFragment();
+//                gameStat.setGameID(game.getGameId());
+//                activity.getSupportFragmentManager().beginTransaction().replace(R.id.game_info_container, gameStat).addToBackStack(null).commit();
             }
         });
 

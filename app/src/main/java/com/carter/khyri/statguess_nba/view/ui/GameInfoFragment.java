@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,19 +19,22 @@ import com.carter.khyri.statguess_nba.R;
 import com.carter.khyri.statguess_nba.view.adapter.GameInfoAdapter;
 import com.carter.khyri.statguess_nba.service.model.GameInfo;
 import com.carter.khyri.statguess_nba.viewmodel.GameInfoViewModel;
+import com.carter.khyri.statguess_nba.viewmodel.SharedViewModel;
 
 
-public class GameInfoFragment extends Fragment {
+public class GameInfoFragment extends Fragment{
     GameInfoViewModel mViewModel;
     GameInfo games = new GameInfo();
     RecyclerView mRecyclerView;
     GameInfoAdapter mGameInfoAdapter;
+    SharedViewModel model;
 
     public GameInfoFragment() { }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        model = ViewModelProviders.of(getActivity()).get(SharedViewModel.class);
     }
 
     @Override
@@ -47,7 +51,7 @@ public class GameInfoFragment extends Fragment {
         mViewModel.getGames().observe(this, new Observer<GameInfo>() {
             @Override
             public void onChanged(@Nullable GameInfo game) {
-                mGameInfoAdapter = new GameInfoAdapter(game);
+                mGameInfoAdapter = new GameInfoAdapter(game, listener);
                 mRecyclerView.setAdapter(mGameInfoAdapter);
                 games = game;
             }
@@ -56,6 +60,15 @@ public class GameInfoFragment extends Fragment {
         return view;
     }
 
+    GameInfoAdapter.ClickListener listener = new GameInfoAdapter.ClickListener() {
+        @Override
+        public void onItemClicked(GameInfo.Game game) {
+            GameStatsFragment gameStat = new GameStatsFragment();
+            gameStat.setGameID(game.getGameId());
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.game_info_container, gameStat).addToBackStack(null).commit();
+        }
+    };
+
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
@@ -63,7 +76,7 @@ public class GameInfoFragment extends Fragment {
             mViewModel.getGames().observe(this, new Observer<GameInfo>() {
                 @Override
                 public void onChanged(@Nullable GameInfo game) {
-                    mGameInfoAdapter = new GameInfoAdapter(game);
+                    mGameInfoAdapter = new GameInfoAdapter(game, listener);
                     mRecyclerView.setAdapter(mGameInfoAdapter);
                     games = game;
                 }
