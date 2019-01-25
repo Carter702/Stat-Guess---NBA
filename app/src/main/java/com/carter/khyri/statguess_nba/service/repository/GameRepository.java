@@ -20,9 +20,6 @@ import retrofit2.Retrofit;
 
 public class GameRepository {
     private NbaService nbaService;
-    String gameId;
-
-    public GameRepository(String id) {this.gameId = id;}
 
     public GameRepository() {}
 
@@ -36,11 +33,7 @@ public class GameRepository {
             @Override
             public void onResponse(Call<GameInfo> call, Response<GameInfo> response) {
                 Log.i("DEBUG", "onResponse: SUCCESSFUL CONNECTION");
-                if(response != null) {
                     data.setValue(response.body());
-                }
-                else
-                    Log.i("DEBUG", "onResponse: RESPONSE WAS NULL");
             }
 
             @Override
@@ -54,9 +47,22 @@ public class GameRepository {
 
     public MutableLiveData<GameStat> getGameStats() {
         final MutableLiveData<GameStat> data = new MutableLiveData<>();
-
+//TODO: figure out how to share gameId between fragments
         nbaService = RetrofitRequest.getRetroInstance().create(NbaService.class);
-        Call<GameStat> call = nbaService.getGameStats(getDate(), "0021800676");
+        Call<GameStat> call = nbaService.getGameStats(getDate(), "");
+
+        call.enqueue(new Callback<GameStat>() {
+            @Override
+            public void onResponse(Call<GameStat> call, Response<GameStat> response) {
+                Log.i("DEBUG", "onResponse: CONNECTED!!");
+                    data.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<GameStat> call, Throwable t) {
+                Log.i("DEBUG", "onFailure: FAILED TO CONNECT");
+            }
+        });
 
         return data;
     }

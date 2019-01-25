@@ -1,8 +1,6 @@
 package com.carter.khyri.statguess_nba.view.adapter;
 
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -16,7 +14,6 @@ import android.widget.TextView;
 
 import com.carter.khyri.statguess_nba.R;
 import com.carter.khyri.statguess_nba.service.model.GameInfo;
-import com.carter.khyri.statguess_nba.service.model.GameStat;
 import com.carter.khyri.statguess_nba.view.ui.GameStatsFragment;
 
 

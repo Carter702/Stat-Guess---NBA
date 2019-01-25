@@ -34,7 +34,8 @@
     <string name="most_rebounds">Most Rebounds</string>
     <string name="most_assists">Most Assists</string>
     <string name="game_winner">Game Winner</string>
-    <string name="button_choose">Choose</string>
+    <string name="choose">Choose</string>
+    <string name="confirm">Confirm</string>
 
     <!-- Profile fragment text -->
     <string name="profile_test">Profile Fragment</string>
