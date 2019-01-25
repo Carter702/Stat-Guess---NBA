@@ -1,7 +1,5 @@
 package com.carter.khyri.statguess_nba.service.repository;
 
-import com.carter.khyri.statguess_nba.service.model.GameInfo;
-
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

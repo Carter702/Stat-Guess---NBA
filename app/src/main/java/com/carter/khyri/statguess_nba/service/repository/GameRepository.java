@@ -1,8 +1,6 @@
 package com.carter.khyri.statguess_nba.service.repository;
 
-import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
-import android.support.constraint.solver.Cache;
 import android.util.Log;
 
 import com.carter.khyri.statguess_nba.service.model.GameInfo;
@@ -11,12 +9,10 @@ import com.carter.khyri.statguess_nba.service.model.GameStat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class GameRepository {
     private NbaService nbaService;
@@ -45,17 +41,19 @@ public class GameRepository {
         return data;
     }
 
-    public MutableLiveData<GameStat> getGameStats() {
+    public MutableLiveData<GameStat> getGameStats(String id) {
         final MutableLiveData<GameStat> data = new MutableLiveData<>();
-//TODO: figure out how to share gameId between fragments
+
         nbaService = RetrofitRequest.getRetroInstance().create(NbaService.class);
-        Call<GameStat> call = nbaService.getGameStats(getDate(), "");
+        Call<GameStat> call = nbaService.getGameStats(getDate(), id);
 
         call.enqueue(new Callback<GameStat>() {
             @Override
             public void onResponse(Call<GameStat> call, Response<GameStat> response) {
                 Log.i("DEBUG", "onResponse: CONNECTED!!");
                     data.setValue(response.body());
+                Log.i("DEBUG", "onResponse: NETWORK CALL DONE");
+
             }
 
             @Override

@@ -14,8 +14,8 @@ public class GameStatsViewModel extends ViewModel {
         gameRepository = new GameRepository();
     }
 
-    public MutableLiveData<GameStat> getGameStats() {
-        return gameRepository.getGameStats();
+    public MutableLiveData<GameStat> getGameStats(String id) {
+        return gameRepository.getGameStats(id);
     }
 
 }

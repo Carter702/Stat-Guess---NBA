@@ -29,16 +29,13 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.item_game, parent, false);
 
-        RecyclerView.ViewHolder gameViewHolder = new GameViewHolder(view);
-
-
         return new GameViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull GameViewHolder gameViewHolder, int position) {
 
-        GameInfo.Game game = gameList.getGames().get(position);
+        final GameInfo.Game game = gameList.getGames().get(position);
         String hTeam = game.getHTeam().getTriCode();
         String hScore = game.getHTeam().getScore();
         String aTeam = game.getVTeam().getTriCode();
@@ -93,6 +90,7 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
             public void onClick(View v) {
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
                 GameStatsFragment gameStat = new GameStatsFragment();
+                gameStat.setGameID(game.getGameId());
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.game_info_container, gameStat).addToBackStack(null).commit();
             }
         });

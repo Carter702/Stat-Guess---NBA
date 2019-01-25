@@ -3,7 +3,6 @@ package com.carter.khyri.statguess_nba.service.repository;
 import com.carter.khyri.statguess_nba.service.model.GameInfo;
 import com.carter.khyri.statguess_nba.service.model.GameStat;
 
-//import io.reactivex.Single;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
