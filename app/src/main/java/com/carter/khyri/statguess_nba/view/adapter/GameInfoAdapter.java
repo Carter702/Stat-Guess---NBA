@@ -70,6 +70,8 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
         if (game.getStatusNum() == 1) {
             clock = game.getStartTimeEastern();
             quarter = "";
+            hScore = "0";
+            aScore = "0";
         }
         else if ((game.getPeriod().isIsHalftime())) {
             clock = "HALFTIME";
