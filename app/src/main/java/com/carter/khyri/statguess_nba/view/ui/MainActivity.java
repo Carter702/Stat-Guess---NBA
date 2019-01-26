@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.carter.khyri.statguess_nba.R;
@@ -61,4 +62,15 @@ public class MainActivity extends AppCompatActivity {
         fm.beginTransaction().add(R.id.container, historyFrag, "2").hide(historyFrag).commit();
         fm.beginTransaction().add(R.id.container,gameFrag, "1").commit();
     }
+
+    @Override
+    public void onBackPressed() {
+        if(gameFrag.getChildFragmentManager().getBackStackEntryCount() > 0 && !gameFrag.isHidden() ) {
+            gameFrag.getChildFragmentManager().popBackStackImmediate();
+            Log.i("DEBUG", "onBackPressed: POPPED IT");
+        } else {
+            super.onBackPressed();
+        }
+    }
+
 }

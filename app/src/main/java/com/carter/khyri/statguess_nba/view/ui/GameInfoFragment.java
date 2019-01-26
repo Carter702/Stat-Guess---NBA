@@ -64,8 +64,8 @@ public class GameInfoFragment extends Fragment{
         @Override
         public void onItemClicked(GameInfo.Game game) {
             GameStatsFragment gameStat = new GameStatsFragment();
-            gameStat.setGameID(game.getGameId());
-            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.game_info_container, gameStat).addToBackStack(null).commit();
+            gameStat.setGameInfo(game.getGameId(), game.getHTeam().getTriCode(), game.getVTeam().getTriCode());
+            getChildFragmentManager().beginTransaction().replace(R.id.game_info_container, gameStat).addToBackStack(null).commit();
         }
     };
 

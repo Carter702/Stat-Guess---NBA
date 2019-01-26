@@ -20,14 +20,16 @@ import com.carter.khyri.statguess_nba.service.utils.CommonUtils;
 import com.carter.khyri.statguess_nba.viewmodel.GameStatsViewModel;
 import com.carter.khyri.statguess_nba.viewmodel.SharedViewModel;
 
+import org.w3c.dom.Text;
+
 public class GameStatsFragment extends Fragment {
 
     private GameStatsViewModel mViewModel;
 
-    private String gameId;
     GameStat gameStat = new GameStat();
+    private String gameId;
+    private String homeTri, awayTri;
     private GameInfo.Game sharedGame;
-
 
     public static GameStatsFragment newInstance() { return new GameStatsFragment();  }
 
@@ -59,7 +61,7 @@ public class GameStatsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.game_stats_fragment, container, false);
-        //updateUI(view);
+        updateUI(view);
 
         return view;
     }
@@ -70,14 +72,10 @@ public class GameStatsFragment extends Fragment {
     }
 
     private void updateUI(View v) {
-        // TODO: Get this info from parent fragment
         TextView homeCity = v.findViewById(R.id.home_city);
         TextView awayCity = v.findViewById(R.id.away_city);
         ImageView homeLogo = v.findViewById(R.id.home_logo);
         ImageView awayLogo = v.findViewById(R.id.away_logo);
-
-        String homeTri = sharedGame.getHTeam().getTriCode();
-        String awayTri = sharedGame.getVTeam().getTriCode();
 
         homeCity.setText(homeTri);
         awayCity.setText(awayTri);
@@ -86,6 +84,15 @@ public class GameStatsFragment extends Fragment {
 
     }
 
-    public void setGameID(String id) {  this.gameId = id; }
+    public void setGameInfo(String id, String homeTriCode, String awayTriCode) {
+        this.gameId = id;
+        this.homeTri = homeTriCode;
+        this.awayTri = awayTriCode;
+        this.homeTri = homeTriCode;
+    }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+    }
 }
