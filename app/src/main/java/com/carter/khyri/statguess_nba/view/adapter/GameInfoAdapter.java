@@ -1,7 +1,9 @@
 package com.carter.khyri.statguess_nba.view.adapter;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 
 import com.carter.khyri.statguess_nba.R;
 import com.carter.khyri.statguess_nba.service.model.GameInfo;
+import com.carter.khyri.statguess_nba.service.utils.CommonUtils;
 import com.carter.khyri.statguess_nba.view.ui.GameStatsFragment;
 import com.carter.khyri.statguess_nba.viewmodel.SharedViewModel;
 
@@ -22,14 +25,17 @@ import com.carter.khyri.statguess_nba.viewmodel.SharedViewModel;
 public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameViewHolder> {
     private GameInfo gameList;
     private ClickListener mListener;
+    private Context mContext;
+    SharedViewModel model;
 
     public interface ClickListener {
         void onItemClicked(GameInfo.Game game);
     }
 
-    public GameInfoAdapter(GameInfo gameList, ClickListener listener) {
+    public GameInfoAdapter(GameInfo gameList, ClickListener listener, Context context) {
         this.gameList = gameList;
         this.mListener = listener;
+        this.mContext = context;
     }
 
     @NonNull
@@ -38,6 +44,7 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
 
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.item_game, parent, false);
+        model = ViewModelProviders.of((FragmentActivity) mContext).get(SharedViewModel.class);
 
         return new GameViewHolder(view);
     }
@@ -46,6 +53,7 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
     public void onBindViewHolder(@NonNull GameViewHolder gameViewHolder, int position) {
 
         final GameInfo.Game game = gameList.getGames().get(position);
+        model.setGame(game);
         String hTeam = game.getHTeam().getTriCode();
         String hScore = game.getHTeam().getScore();
         String aTeam = game.getVTeam().getTriCode();
@@ -78,11 +86,11 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
 
         gameViewHolder.txtHomeCity.setText(hTeam);
         gameViewHolder.txtHomeScore.setText(hScore);
-        gameViewHolder.homeLogo.setImageResource(getLogo(hTeam));
+        gameViewHolder.homeLogo.setImageResource(CommonUtils.getLogo(hTeam));
 
         gameViewHolder.txtAwayCity.setText(aTeam);
         gameViewHolder.txtAwayScore.setText(aScore);
-        gameViewHolder.awayLogo.setImageResource(getLogo(aTeam));
+        gameViewHolder.awayLogo.setImageResource(CommonUtils.getLogo(aTeam));
 
         if( !(game.getHTeam().getLinescore().isEmpty()) ) {
             gameViewHolder.txtHomeFirstPoints.setText(game.getHTeam().getLinescore().get(0).getScore());
@@ -135,109 +143,6 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
         }
 
         return quarter;
-    }
-
-    private int getLogo(String triCode) {
-
-        int resource = 0;
-        switch (triCode) {
-            case "ATL":
-                resource = R.drawable.logo_atl;
-                break;
-            case "BKN":
-                resource = R.drawable.logo_bkn;
-                break;
-            case "BOS":
-                resource = R.drawable.logo_bos;
-                break;
-            case "CHA":
-                resource = R.drawable.logo_cha;
-                break;
-            case "CHI":
-                resource = R.drawable.logo_chi;
-                break;
-            case "CLE":
-                resource = R.drawable.logo_cle;
-                break;
-            case "DAL":
-                resource = R.drawable.logo_dal;
-                break;
-            case "DEN":
-                resource = R.drawable.logo_den;
-                break;
-            case "DET":
-                resource = R.drawable.logo_det;
-                break;
-            case "GSW":
-                resource = R.drawable.logo_gsw;
-                break;
-            case "HOU":
-                resource = R.drawable.logo_hou;
-                break;
-            case "IND":
-                resource = R.drawable.logo_ind;
-                break;
-            case "LAC":
-                resource = R.drawable.logo_lac;
-                break;
-            case "LAL":
-                resource = R.drawable.logo_las;
-                break;
-            case "MEM":
-                resource = R.drawable.logo_mem;
-                break;
-            case "MIA":
-                resource = R.drawable.logo_mia;
-                break;
-            case "MIL":
-                resource = R.drawable.logo_mil;
-                break;
-            case "MIN":
-                resource = R.drawable.logo_min;
-                break;
-            case "NOP":
-                resource = R.drawable.logo_nop;
-                break;
-            case "NYK":
-                resource = R.drawable.logo_nyk;
-                break;
-            case "OKC":
-                resource = R.drawable.logo_okc;
-                break;
-            case "ORL":
-                resource = R.drawable.logo_orl;
-                break;
-            case "PHI":
-                resource = R.drawable.logo_phi;
-                break;
-            case "PHX":
-                resource = R.drawable.logo_phx;
-                break;
-            case "POR":
-                resource = R.drawable.logo_por;
-                break;
-            case "SAC":
-                resource = R.drawable.logo_sac;
-                break;
-            case "SAS":
-                resource = R.drawable.logo_sas;
-                break;
-            case "TOR":
-                resource = R.drawable.logo_tor;
-                break;
-            case "UTA":
-                resource = R.drawable.logo_uta;
-                break;
-            case "WAS":
-                resource = R.drawable.logo_was;
-                break;
-
-                default:
-                    resource = R.drawable.ic_basketball;
-                    break;
-        }
-
-        return resource;
     }
 
     private void getOvertimePoints(GameViewHolder viewHolder, GameInfo.Game game) {

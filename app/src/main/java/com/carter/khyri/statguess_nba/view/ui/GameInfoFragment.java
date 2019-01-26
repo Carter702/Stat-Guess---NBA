@@ -27,14 +27,14 @@ public class GameInfoFragment extends Fragment{
     GameInfo games = new GameInfo();
     RecyclerView mRecyclerView;
     GameInfoAdapter mGameInfoAdapter;
-    SharedViewModel model;
+
 
     public GameInfoFragment() { }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        model = ViewModelProviders.of(getActivity()).get(SharedViewModel.class);
+
     }
 
     @Override
@@ -51,7 +51,7 @@ public class GameInfoFragment extends Fragment{
         mViewModel.getGames().observe(this, new Observer<GameInfo>() {
             @Override
             public void onChanged(@Nullable GameInfo game) {
-                mGameInfoAdapter = new GameInfoAdapter(game, listener);
+                mGameInfoAdapter = new GameInfoAdapter(game, listener, getContext());
                 mRecyclerView.setAdapter(mGameInfoAdapter);
                 games = game;
             }
@@ -76,7 +76,7 @@ public class GameInfoFragment extends Fragment{
             mViewModel.getGames().observe(this, new Observer<GameInfo>() {
                 @Override
                 public void onChanged(@Nullable GameInfo game) {
-                    mGameInfoAdapter = new GameInfoAdapter(game, listener);
+                    mGameInfoAdapter = new GameInfoAdapter(game, listener, getContext());
                     mRecyclerView.setAdapter(mGameInfoAdapter);
                     games = game;
                 }

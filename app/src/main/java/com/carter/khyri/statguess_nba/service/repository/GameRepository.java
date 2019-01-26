@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.carter.khyri.statguess_nba.service.model.GameInfo;
 import com.carter.khyri.statguess_nba.service.model.GameStat;
+import com.carter.khyri.statguess_nba.service.utils.CommonUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -23,7 +24,7 @@ public class GameRepository {
         final MutableLiveData<GameInfo> data = new MutableLiveData<>();
 
         nbaService = RetrofitRequest.getRetroInstance().create(NbaService.class);
-        Call<GameInfo> call = nbaService.getGameData(getDate());
+        Call<GameInfo> call = nbaService.getGameData(CommonUtils.getDate());
 
         call.enqueue(new Callback<GameInfo>() {
             @Override
@@ -44,7 +45,7 @@ public class GameRepository {
         final MutableLiveData<GameStat> data = new MutableLiveData<>();
 
         nbaService = RetrofitRequest.getRetroInstance().create(NbaService.class);
-        Call<GameStat> call = nbaService.getGameStats(getDate(), id);
+        Call<GameStat> call = nbaService.getGameStats(CommonUtils.getDate(), id);
 
         call.enqueue(new Callback<GameStat>() {
             @Override
@@ -64,12 +65,4 @@ public class GameRepository {
         return data;
     }
 
-    private String getDate() {
-        String curDate = "";
-        Date date = Calendar.getInstance().getTime();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
-        curDate = formatter.format(date);
-
-        return curDate;
-    }
 }
