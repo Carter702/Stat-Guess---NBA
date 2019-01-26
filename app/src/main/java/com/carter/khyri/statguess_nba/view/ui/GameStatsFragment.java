@@ -30,13 +30,13 @@ public class GameStatsFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.game_stats_fragment, container, false);
 
-        mViewModel = ViewModelProviders.of(this).get(GameStatsViewModel.class);
-        mViewModel.getGameStats(gameId).observe(this, new Observer<GameStat>() {
-            @Override
-            public void onChanged(@Nullable GameStat game) {
-                gameStat = game;
-            }
-        });
+//        mViewModel = ViewModelProviders.of(this).get(GameStatsViewModel.class);
+//        mViewModel.getGameStats(gameId).observe(this, new Observer<GameStat>() {
+//            @Override
+//            public void onChanged(@Nullable GameStat game) {
+//                gameStat = game;
+//            }
+//        });
 
         return view;
     }
@@ -44,10 +44,23 @@ public class GameStatsFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        this.configureViewModel();
     }
 
-    public void setGameID(String id) {
-        this.gameId = id;
+    private void configureViewModel() {
+        mViewModel = ViewModelProviders.of(this).get(GameStatsViewModel.class);
+        mViewModel.getGameStats(gameId).observe(this, new Observer<GameStat>() {
+            @Override
+            public void onChanged(@Nullable GameStat game) {
+                gameStat = game;
+            }
+        });
     }
+
+    private void updateUI() {
+        // Will update TextView etc.
+    }
+
+    public void setGameID(String id) {  this.gameId = id; }
 
 }

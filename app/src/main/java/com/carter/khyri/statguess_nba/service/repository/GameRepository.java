@@ -28,7 +28,6 @@ public class GameRepository {
         call.enqueue(new Callback<GameInfo>() {
             @Override
             public void onResponse(Call<GameInfo> call, Response<GameInfo> response) {
-                Log.i("DEBUG", "onResponse: SUCCESSFUL CONNECTION");
                     data.setValue(response.body());
             }
 

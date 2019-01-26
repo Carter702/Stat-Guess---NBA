@@ -99,10 +99,6 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
             @Override
             public void onClick(View v) {
                 mListener.onItemClicked(game);
-//                AppCompatActivity activity = (AppCompatActivity) v.getContext();
-//                GameStatsFragment gameStat = new GameStatsFragment();
-//                gameStat.setGameID(game.getGameId());
-//                activity.getSupportFragmentManager().beginTransaction().replace(R.id.game_info_container, gameStat).addToBackStack(null).commit();
             }
         });
 
