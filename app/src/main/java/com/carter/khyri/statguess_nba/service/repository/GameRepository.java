@@ -1,15 +1,11 @@
 package com.carter.khyri.statguess_nba.service.repository;
 
-import android.arch.lifecycle.MutableLiveData;
+import androidx.lifecycle.MutableLiveData;
 import android.util.Log;
 
 import com.carter.khyri.statguess_nba.service.model.GameInfo;
 import com.carter.khyri.statguess_nba.service.model.GameStat;
 import com.carter.khyri.statguess_nba.service.utils.CommonUtils;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;

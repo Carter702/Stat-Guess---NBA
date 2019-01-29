@@ -1,16 +1,14 @@
 package com.carter.khyri.statguess_nba.view.ui;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +17,6 @@ import com.carter.khyri.statguess_nba.R;
 import com.carter.khyri.statguess_nba.view.adapter.GameInfoAdapter;
 import com.carter.khyri.statguess_nba.service.model.GameInfo;
 import com.carter.khyri.statguess_nba.viewmodel.GameInfoViewModel;
-import com.carter.khyri.statguess_nba.viewmodel.SharedViewModel;
 
 
 public class GameInfoFragment extends Fragment{

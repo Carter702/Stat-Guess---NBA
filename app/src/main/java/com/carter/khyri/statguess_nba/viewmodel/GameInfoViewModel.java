@@ -1,17 +1,12 @@
 package com.carter.khyri.statguess_nba.viewmodel;
 
-import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
-import android.icu.text.SimpleDateFormat;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 import com.carter.khyri.statguess_nba.service.model.GameInfo;
 import com.carter.khyri.statguess_nba.service.repository.GameRepository;
-
-import java.util.Calendar;
-import java.util.Date;
 
 public class GameInfoViewModel extends ViewModel {
     private GameRepository gameRepository;

@@ -8,7 +8,7 @@
     android:background="@color/black"
     android:paddingBottom="@dimen/space_large">
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/game_card"
         android:layout_width="match_parent"
         android:layout_height="180dp"
@@ -19,7 +19,7 @@
         app:cardBackgroundColor="@color/colorPrimaryDark"
         app:cardCornerRadius="4dp">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -247,14 +247,14 @@
                 app:layout_constraintEnd_toStartOf="@+id/ot_score_away"
                 app:layout_constraintStart_toEndOf="@+id/third_score_away" />
 
-            <android.support.constraint.Guideline
+            <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintGuide_begin="130dp" />
 
-            <android.support.constraint.Guideline
+            <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -363,6 +363,6 @@
                 app:layout_constraintTop_toTopOf="@+id/home_score"
                 app:srcCompat="@drawable/winner_triangle" />
 
-        </android.support.constraint.ConstraintLayout>
-    </android.support.v7.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 </LinearLayout>

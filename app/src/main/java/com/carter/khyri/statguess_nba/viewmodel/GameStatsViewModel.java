@@ -1,9 +1,8 @@
 package com.carter.khyri.statguess_nba.viewmodel;
 
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
-import com.carter.khyri.statguess_nba.service.model.GameInfo;
 import com.carter.khyri.statguess_nba.service.model.GameStat;
 import com.carter.khyri.statguess_nba.service.repository.GameRepository;
 

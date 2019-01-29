@@ -1,219 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/game_stat_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
-    tools:context=".view.ui.GameStatsFragment"
-    android:clickable="true">
+    android:clickable="true"
+    android:focusable="true"
+    tools:context=".view.ui.GameStatsFragment">
 
 
     <TextView
         android:id="@+id/away_city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:text="@string/away_city"
         android:textColor="@color/materialWhite"
         android:textSize="@dimen/font_larger"
-        app:layout_constraintBottom_toBottomOf="@+id/away_logo"
-        app:layout_constraintStart_toEndOf="@+id/away_logo"
-        app:layout_constraintTop_toTopOf="@+id/away_logo" />
+        tools:layout_editor_absoluteX="116dp"
+        tools:layout_editor_absoluteY="49dp" />
 
     <TextView
         android:id="@+id/home_city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:text="@string/home_city"
         android:textColor="@color/materialWhite"
         android:textSize="@dimen/font_larger"
-        app:layout_constraintBottom_toBottomOf="@+id/home_logo"
-        app:layout_constraintEnd_toStartOf="@+id/home_logo"
-        app:layout_constraintTop_toTopOf="@+id/home_logo" />
+        tools:layout_editor_absoluteX="233dp"
+        tools:layout_editor_absoluteY="49dp" />
 
     <ImageView
         android:id="@+id/away_logo"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:src="@color/materialOrange"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp" />
 
     <ImageView
         android:id="@+id/home_logo"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:src="@color/materialOrange"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="303dp"
+        tools:layout_editor_absoluteY="8dp" />
 
     <TextView
         android:id="@+id/most_points"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="8dp"
         style="@style/GameStatLabels"
+        android:layout_width="219dp"
+        android:layout_height="50dp"
         android:text="@string/most_points"
-        app:layout_constraintEnd_toStartOf="@+id/button_home_points"
-        app:layout_constraintStart_toEndOf="@+id/button_away_points"
-        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+        tools:layout_editor_absoluteX="96dp"
+        tools:layout_editor_absoluteY="167dp" />
 
     <TextView
         android:id="@+id/most_rebounds"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="8dp"
         style="@style/GameStatLabels"
+        android:layout_width="219dp"
+        android:layout_height="80dp"
         android:text="@string/most_rebounds"
-        app:layout_constraintEnd_toStartOf="@+id/button_home_rebounds"
-        app:layout_constraintHorizontal_bias="0.555"
-        app:layout_constraintStart_toEndOf="@+id/button_away_rebounds"
-        app:layout_constraintTop_toBottomOf="@+id/most_points" />
+        tools:layout_editor_absoluteX="96dp"
+        tools:layout_editor_absoluteY="265dp" />
 
     <TextView
         android:id="@+id/most_assists"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="8dp"
         style="@style/GameStatLabels"
+        android:layout_width="219dp"
+        android:layout_height="50dp"
         android:text="@string/most_assists"
-        app:layout_constraintEnd_toStartOf="@+id/button_home_assists"
-        app:layout_constraintStart_toEndOf="@+id/button_away_assists"
-        app:layout_constraintTop_toBottomOf="@+id/most_rebounds" />
+        tools:layout_editor_absoluteX="96dp"
+        tools:layout_editor_absoluteY="362dp" />
 
     <TextView
         android:id="@+id/game_winner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="8dp"
         style="@style/GameStatLabels"
+        android:layout_width="219dp"
+        android:layout_height="50dp"
         android:text="@string/game_winner"
-        app:layout_constraintEnd_toStartOf="@+id/button_winner_home"
-        app:layout_constraintHorizontal_bias="0.541"
-        app:layout_constraintStart_toEndOf="@+id/button_winner_away"
-        app:layout_constraintTop_toBottomOf="@+id/most_assists" />
+        tools:layout_editor_absoluteX="96dp"
+        tools:layout_editor_absoluteY="460dp" />
 
     <Button
         android:id="@+id/button_away_points"
+        style="@style/ButtonView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="44dp"
-        style="@style/ButtonView"
         android:text="@string/choose"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="170dp" />
 
     <Button
         android:id="@+id/button_away_rebounds"
+        style="@style/ButtonView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="44dp"
-        style="@style/ButtonView"
         android:text="@string/choose"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_away_points" />
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="268dp" />
 
     <Button
         android:id="@+id/button_away_assists"
+        style="@style/ButtonView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="44dp"
-        style="@style/ButtonView"
         android:text="@string/choose"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_away_rebounds" />
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="365dp" />
 
     <Button
         android:id="@+id/button_home_points"
+        style="@style/ButtonView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="8dp"
-        style="@style/ButtonView"
         android:text="@string/choose"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+        tools:layout_editor_absoluteX="315dp"
+        tools:layout_editor_absoluteY="175dp" />
 
     <Button
         android:id="@+id/button_home_rebounds"
+        style="@style/ButtonView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="8dp"
-        style="@style/ButtonView"
         android:text="@string/choose"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_home_points" />
+        tools:layout_editor_absoluteX="315dp"
+        tools:layout_editor_absoluteY="269dp" />
 
     <Button
         android:id="@+id/button_home_assists"
+        style="@style/ButtonView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="8dp"
-        style="@style/ButtonView"
         android:text="@string/choose"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_home_rebounds" />
+        tools:layout_editor_absoluteX="315dp"
+        tools:layout_editor_absoluteY="363dp" />
 
     <Button
         android:id="@+id/button_winner_away"
+        style="@style/ButtonView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="44dp"
-        style="@style/ButtonView"
         android:text="@string/choose"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_away_assists" />
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="462dp" />
 
     <Button
         android:id="@+id/button_winner_home"
+        style="@style/ButtonView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="8dp"
-        style="@style/ButtonView"
         android:text="@string/choose"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_home_assists" />
+        tools:layout_editor_absoluteX="315dp"
+        tools:layout_editor_absoluteY="458dp" />
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="134dp" />
+        app:layout_constraintGuide_begin="121dp" />
 
     <Button
         android:id="@+id/button_confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="8dp"
         android:text="@string/confirm"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/game_winner" />
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="569dp" />
 
-</android.support.constraint.ConstraintLayout>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="560dp" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
