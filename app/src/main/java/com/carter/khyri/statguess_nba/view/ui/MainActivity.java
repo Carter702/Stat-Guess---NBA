@@ -25,10 +25,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BottomNavigationView navigation = findViewById(R.id.bottomNavigationView2);
+        BottomNavigationView navigation = findViewById(R.id.bottomNavigationView);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        loadFragment();
+        loadFragments();
     }
 
 
@@ -40,16 +40,20 @@ public class MainActivity extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.navigation_games:
+                    gameFrag.getChildFragmentManager().popBackStackImmediate();
                     fm.beginTransaction().hide(active).show(gameFrag).commit();
                     active = gameFrag;
+                    //gamesPressed()
                     return true;
                 case R.id.navigation_history:
                     fm.beginTransaction().hide(active).show(historyFrag).commit();
                     active = historyFrag;
+                    //historyPressed()
                     return true;
                 case R.id.navigation_profile:
                     fm.beginTransaction().hide(active).show(profileFrag).commit();
                     active = profileFrag;
+                    //profilePressed()
                     return true;
             }
 
@@ -57,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private void loadFragment() {
+    private void loadFragments() {
         fm.beginTransaction().add(R.id.container, profileFrag, "3").hide(profileFrag).commit();
         fm.beginTransaction().add(R.id.container, historyFrag, "2").hide(historyFrag).commit();
         fm.beginTransaction().add(R.id.container,gameFrag, "1").commit();
