@@ -21,9 +21,12 @@ import com.carter.khyri.statguess_nba.service.utils.CommonUtils;
 import com.carter.khyri.statguess_nba.view.ui.GameStatsFragment;
 import com.carter.khyri.statguess_nba.viewmodel.SharedViewModel;
 
+import java.util.ArrayList;
+
 
 public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameViewHolder> {
     private GameInfo gameList;
+    private ArrayList<GameInfo.Game> mGames = new ArrayList<>();
     private ClickListener mListener;
     private Context mContext;
     SharedViewModel model;
@@ -36,6 +39,8 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
         this.gameList = gameList;
         this.mListener = listener;
         this.mContext = context;
+        mGames.clear();
+        mGames.addAll(gameList.getGames());
     }
 
     @NonNull
@@ -43,7 +48,7 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
     public GameInfoAdapter.GameViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.item_game, parent, false);
+        final View view = layoutInflater.inflate(R.layout.item_game, parent, false);
         model = ViewModelProviders.of((FragmentActivity) mContext).get(SharedViewModel.class);
 
         return new GameViewHolder(view);
@@ -52,8 +57,9 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
     @Override
     public void onBindViewHolder(@NonNull GameViewHolder gameViewHolder, int position) {
 
-        final GameInfo.Game game = gameList.getGames().get(position);
+        final GameInfo.Game game = mGames.get(position);
         model.setGame(game);
+        Log.i("DEBUG", "HERE: Position:" + position + " FIRST: " + gameViewHolder.txtHomeFirstPoints.getText().toString());
         String hTeam = game.getHTeam().getTriCode();
         String hScore = game.getHTeam().getScore();
         String aTeam = game.getVTeam().getTriCode();
@@ -183,7 +189,17 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
     @Override
     public int getItemCount() { return gameList.getNumGames(); }
 
-    public class GameViewHolder extends RecyclerView.ViewHolder {
+    @Override
+    public long getItemId(int position) {
+        return super.getItemId(position);
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return super.getItemViewType(position);
+    }
+
+    public static class GameViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
         TextView txtGameTime, txtGameQuarter, txtGameOt;
         TextView txtHomeCity, txtHomeScore, txtHomeFirstPoints, txtHomeSecondPoints, txtHomeThirdPoints, txtHomeFourthPoints, txtHomeOtPoints;

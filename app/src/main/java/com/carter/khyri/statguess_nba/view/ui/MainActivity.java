@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         if(!gameFrag.isHidden() && gameFrag.getChildFragmentManager().getBackStackEntryCount() > 0) {
             gameFrag.getChildFragmentManager().popBackStackImmediate();
-            Log.i("DEBUG", "onBackPressed: POPPED IT");
         } else {
             super.onBackPressed();
         }

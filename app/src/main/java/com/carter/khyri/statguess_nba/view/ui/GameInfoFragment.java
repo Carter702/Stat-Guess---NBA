@@ -24,7 +24,7 @@ import com.carter.khyri.statguess_nba.viewmodel.SharedViewModel;
 
 public class GameInfoFragment extends Fragment{
     GameInfoViewModel mViewModel;
-    GameInfo games = new GameInfo();
+    GameInfo games;
     RecyclerView mRecyclerView;
     GameInfoAdapter mGameInfoAdapter;
 
@@ -34,7 +34,7 @@ public class GameInfoFragment extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        games = new GameInfo();
     }
 
     @Override
@@ -44,8 +44,6 @@ public class GameInfoFragment extends Fragment{
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.game_recycler);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.setAdapter(mGameInfoAdapter);
 
         mViewModel = ViewModelProviders.of(this).get(GameInfoViewModel.class);
         mViewModel.getGames().observe(this, new Observer<GameInfo>() {
