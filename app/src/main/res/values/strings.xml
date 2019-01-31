@@ -36,6 +36,8 @@
     <string name="game_winner">Game Winner</string>
     <string name="choose">Choose</string>
     <string name="confirm">Confirm</string>
+    <string name="home_logo_desc">Home team logo</string>
+    <string name="away_logo_desc">Away team logo</string>
 
     <!-- Profile fragment text -->
     <string name="profile_test">Profile Fragment</string>
