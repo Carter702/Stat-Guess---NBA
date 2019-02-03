@@ -13,6 +13,7 @@
     <style name="ButtonView">
         <item name="android:textSize">@dimen/font_normal</item>
         <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:hapticFeedbackEnabled">true</item>
     </style>
 
     <style name="GameStatLabels">
@@ -20,6 +21,14 @@
         <item name="android:textColor">@color/materialWhite</item>
         <item name="android:textSize">@dimen/font_huge</item>
         <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="RadioButton">
+        <item name="android:scaleY">1.3</item>
+        <item name="android:scaleX">1.3</item>
+        <item name="android:buttonTint">@color/materialOrange</item>
+        <item name="android:clickable">true</item>
+        <item name="android:hapticFeedbackEnabled">true</item>
     </style>
 
 </resources>

@@ -61,9 +61,9 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private void loadFragments() {
-        fm.beginTransaction().add(R.id.container, profileFrag, "3").hide(profileFrag).commit();
-        fm.beginTransaction().add(R.id.container, historyFrag, "2").hide(historyFrag).commit();
-        fm.beginTransaction().add(R.id.container,gameFrag, "1").commit();
+        fm.beginTransaction().add(R.id.container, profileFrag, "profile").hide(profileFrag).commit();
+        fm.beginTransaction().add(R.id.container, historyFrag, "history").hide(historyFrag).commit();
+        fm.beginTransaction().add(R.id.container,gameFrag, "games").commit();
     }
 
     @Override
