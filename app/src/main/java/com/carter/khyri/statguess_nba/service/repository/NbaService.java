@@ -16,6 +16,13 @@ public interface NbaService {
     @GET("prod/v1/{date}/{gameId}_boxscore.json")
     Call<GameStat> getGameStats(@Path("date") String date, @Path("gameId") String gameId);
 
-    //@GET("http://data.nba.net/10s/prod/v1/2018/players.json")
-    //Call<> getPlayers(@Path(""));
+//    @GET("prod/v2/2018/teams.json")
+//    Call<Team> getTeams();
+//
+//    @GET("/prod/v1/2018/players.json")
+//    Call<Player> getPlayers();
+//
+//    @GET("prod/v1/2018/teams/{teamName}/roster.json")
+//    Call<Roster> getRoster(@Path("teamName") String teamName);
+
 }
