@@ -13,4 +13,5 @@
     <!-- material colors -->
     <color name="materialOrange">#D84315</color>
     <color name="materialWhite">#fafafa</color>
+    <color name="materialBlueGrey">#263238</color>
 </resources>
