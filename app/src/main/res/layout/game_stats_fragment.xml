@@ -58,107 +58,70 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/most_points"
-        style="@style/GameStatLabels"
-        android:layout_width="219dp"
+        android:id="@+id/vs_label"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="vs"
+        android:textColor="@color/materialWhite"
+        android:textSize="@dimen/font_large"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintEnd_toStartOf="@+id/home_city"
+        app:layout_constraintStart_toEndOf="@+id/away_city"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.78" />
+
+    <TextView
+        android:id="@+id/most_points"
+        style="@style/GameStatLabels"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:text="@string/most_points"
         app:layout_constraintBottom_toTopOf="@+id/most_rebounds"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/away_logo" />
+        app:layout_constraintEnd_toStartOf="@+id/spinner_home_points"
+        app:layout_constraintStart_toEndOf="@+id/spinner_away_points"
+        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
+    <Spinner
+        android:id="@+id/spinner_home_points"
+        style="@style/Spinner"
+        android:layout_marginEnd="8dp"
+        android:entries="@array/players"
+        app:layout_constraintBaseline_toBaselineOf="@+id/most_points"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner_away_points"
+        style="@style/Spinner"
+        android:layout_marginStart="8dp"
+        android:entries="@array/players"
+        app:layout_constraintBaseline_toBaselineOf="@+id/most_points"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/most_rebounds"
         style="@style/GameStatLabels"
-        android:layout_width="219dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         android:text="@string/most_rebounds"
         app:layout_constraintBottom_toTopOf="@+id/most_assists"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/most_points" />
+        app:layout_constraintTop_toBottomOf="@+id/most_points"
+        tools:layout_editor_absoluteX="104dp" />
 
     <TextView
         android:id="@+id/most_assists"
         style="@style/GameStatLabels"
-        android:layout_width="219dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/most_assists"
         app:layout_constraintBottom_toTopOf="@+id/radioGroup"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/most_rebounds" />
-
-    <Button
-        android:id="@+id/button_away_points"
-        style="@style/ButtonView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="@string/choose"
-        app:layout_constraintBaseline_toBaselineOf="@+id/most_points"
-        app:layout_constraintEnd_toStartOf="@+id/most_points" />
-
-    <Button
-        android:id="@+id/button_away_rebounds"
-        style="@style/ButtonView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="@string/choose"
-        app:layout_constraintBaseline_toBaselineOf="@+id/most_rebounds"
-        app:layout_constraintEnd_toStartOf="@+id/most_rebounds" />
-
-    <Button
-        android:id="@+id/button_away_assists"
-        style="@style/ButtonView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="@string/choose"
-        app:layout_constraintBaseline_toBaselineOf="@+id/most_assists"
-        app:layout_constraintEnd_toStartOf="@+id/most_assists" />
-
-    <Button
-        android:id="@+id/button_home_points"
-        style="@style/ButtonView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/choose"
-        app:layout_constraintBaseline_toBaselineOf="@+id/most_points"
-        app:layout_constraintStart_toEndOf="@+id/most_points" />
-
-    <Button
-        android:id="@+id/button_home_rebounds"
-        style="@style/ButtonView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/choose"
-        app:layout_constraintBaseline_toBaselineOf="@+id/most_rebounds"
-        app:layout_constraintStart_toEndOf="@+id/most_rebounds" />
-
-    <Button
-        android:id="@+id/button_home_assists"
-        style="@style/ButtonView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/choose"
-        app:layout_constraintBaseline_toBaselineOf="@+id/most_assists"
-        app:layout_constraintStart_toEndOf="@+id/most_assists" />
+        app:layout_constraintTop_toBottomOf="@+id/most_rebounds"
+        tools:layout_editor_absoluteX="136dp" />
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -178,10 +141,8 @@
         android:text="@string/confirm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
-
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -189,6 +150,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/button_confirm"
@@ -221,5 +183,6 @@
             android:checked="false" />
 
     </RadioGroup>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

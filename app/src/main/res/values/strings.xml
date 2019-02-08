@@ -38,6 +38,18 @@
     <string name="confirm">Confirm</string>
     <string name="home_logo_desc">Home team logo</string>
     <string name="away_logo_desc">Away team logo</string>
+    <string-array name="players">
+        <item>Player1</item>
+        <item>Player2</item>
+        <item>Player3</item>
+        <item>Player4</item>
+        <item>Player5</item>
+        <item>Player6</item>
+        <item>Player7</item>
+        <item>Player8</item>
+        <item>Player9</item>
+        <item>Player10</item>
+    </string-array>
 
     <!-- Profile fragment text -->
     <string name="profile_test">Profile Fragment</string>
