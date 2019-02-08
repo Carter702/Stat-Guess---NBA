@@ -79,8 +79,6 @@
         style="@style/GameStatLabels"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         android:text="@string/most_points"
         app:layout_constraintBottom_toTopOf="@+id/most_rebounds"
         app:layout_constraintEnd_toStartOf="@+id/spinner_home_points"
@@ -103,26 +101,63 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/most_points"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Spinner
+        android:id="@+id/spinner_away_rebounds"
+        style="@style/Spinner"
+        android:layout_marginStart="8dp"
+        android:entries="@array/players"
+        app:layout_constraintBaseline_toBaselineOf="@+id/most_rebounds"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner_home_rebounds"
+        style="@style/Spinner"
+        android:layout_marginEnd="8dp"
+        android:entries="@array/players"
+        app:layout_constraintBaseline_toBaselineOf="@+id/most_rebounds"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner_away_assists"
+        style="@style/Spinner"
+        android:layout_marginStart="8dp"
+        android:entries="@array/players"
+        app:layout_constraintBaseline_toBaselineOf="@+id/most_assists"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner_home_assists"
+        style="@style/Spinner"
+        android:layout_marginEnd="8dp"
+        android:entries="@array/players"
+        app:layout_constraintBaseline_toBaselineOf="@+id/most_assists"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <TextView
         android:id="@+id/most_rebounds"
         style="@style/GameStatLabels"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:text="@string/most_rebounds"
         app:layout_constraintBottom_toTopOf="@+id/most_assists"
-        app:layout_constraintTop_toBottomOf="@+id/most_points"
-        tools:layout_editor_absoluteX="104dp" />
+        app:layout_constraintEnd_toStartOf="@+id/spinner_home_rebounds"
+        app:layout_constraintStart_toEndOf="@+id/spinner_away_rebounds"
+        app:layout_constraintTop_toBottomOf="@+id/most_points" />
 
     <TextView
         android:id="@+id/most_assists"
         style="@style/GameStatLabels"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:text="@string/most_assists"
         app:layout_constraintBottom_toTopOf="@+id/radioGroup"
-        app:layout_constraintTop_toBottomOf="@+id/most_rebounds"
-        tools:layout_editor_absoluteX="136dp" />
-
+        app:layout_constraintEnd_toStartOf="@+id/spinner_home_assists"
+        app:layout_constraintStart_toEndOf="@+id/spinner_away_assists"
+        app:layout_constraintTop_toBottomOf="@+id/most_rebounds" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
