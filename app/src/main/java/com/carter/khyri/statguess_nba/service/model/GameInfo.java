@@ -87,9 +87,6 @@ public class GameInfo {
         @SerializedName("attendance")
         @Expose
         private String attendance;
-        @SerializedName("gameDuration")
-        @Expose
-        private GameDuration gameDuration;
         @SerializedName("period")
         @Expose
         private Period period;
@@ -170,10 +167,6 @@ public class GameInfo {
 
         public String getAttendance() {
             return attendance;
-        }
-
-        public GameDuration getGameDuration() {
-            return gameDuration;
         }
 
         public Period getPeriod() {
@@ -404,24 +397,6 @@ public class GameInfo {
 
     }
 
-    public class GameDuration {
-
-        @SerializedName("hours")
-        @Expose
-        private String hours;
-        @SerializedName("minutes")
-        @Expose
-        private String minutes;
-
-        public String getHours() {
-            return hours;
-        }
-
-        public String getMinutes() {
-            return minutes;
-        }
-
-    }
 }
 
 

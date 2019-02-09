@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.carter.khyri.statguess_nba.service.model.GameInfo;
 import com.carter.khyri.statguess_nba.service.model.GameStat;
+import com.carter.khyri.statguess_nba.service.model.Roster;
 import com.carter.khyri.statguess_nba.service.utils.CommonUtils;
 
 import retrofit2.Call;
@@ -37,23 +38,41 @@ public class GameRepository {
         return data;
     }
 
-    public MutableLiveData<GameStat> getGameStats(String id) {
+    public MutableLiveData<GameStat> getGameStats(String gameId) {
         final MutableLiveData<GameStat> data = new MutableLiveData<>();
 
         nbaService = RetrofitRequest.getRetroInstance().create(NbaService.class);
-        Call<GameStat> call = nbaService.getGameStats(CommonUtils.getDate(), id);
+        Call<GameStat> call = nbaService.getGameStats(CommonUtils.getDate(), gameId);
 
         call.enqueue(new Callback<GameStat>() {
             @Override
             public void onResponse(Call<GameStat> call, Response<GameStat> response) {
-                Log.i("DEBUG", "onResponse: CONNECTED!!");
                     data.setValue(response.body());
-                Log.i("DEBUG", "onResponse: NETWORK CALL DONE");
-
             }
 
             @Override
             public void onFailure(Call<GameStat> call, Throwable t) {
+                Log.i("DEBUG", "onFailure: FAILED TO CONNECT");
+            }
+        });
+
+        return data;
+    }
+
+    public MutableLiveData<Roster> getRoster(String teamName) {
+        final MutableLiveData<Roster> data = new MutableLiveData<>();
+
+        nbaService = RetrofitRequest.getRetroInstance().create(NbaService.class);
+        Call<Roster> call = nbaService.getRoster("celtics");
+
+        call.enqueue(new Callback<Roster>() {
+            @Override
+            public void onResponse(Call<Roster> call, Response<Roster> response) {
+                data.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Roster> call, Throwable t) {
                 Log.i("DEBUG", "onFailure: FAILED TO CONNECT");
             }
         });
