@@ -121,4 +121,108 @@ public final class CommonUtils {
 
         return curDate;
     }
+
+    public static String getTeamName(String triCode) {
+
+        String teamName;
+
+        switch (triCode) {
+            case "ATL":
+                teamName = "hawks";
+                break;
+            case "BKN":
+                teamName = "nets";
+                break;
+            case "BOS":
+                teamName = "celtics";
+                break;
+            case "CHA":
+                teamName = "hornets";
+                break;
+            case "CHI":
+                teamName = "bulls";
+                break;
+            case "CLE":
+                teamName = "cavaliers";
+                break;
+            case "DAL":
+                teamName = "mavericks";
+                break;
+            case "DEN":
+                teamName = "nuggets";
+                break;
+            case "DET":
+                teamName = "pistons";
+                break;
+            case "GSW":
+                teamName = "warriors";
+                break;
+            case "HOU":
+                teamName = "rockets";
+                break;
+            case "IND":
+                teamName = "pacers";
+                break;
+            case "LAC":
+                teamName = "clipeprs";
+                break;
+            case "LAL":
+                teamName = "lakers";
+                break;
+            case "MEM":
+                teamName = "grizzlies";
+                break;
+            case "MIA":
+                teamName = "heat";
+                break;
+            case "MIL":
+                teamName = "bucks";
+                break;
+            case "MIN":
+                teamName = "timberwolves";
+                break;
+            case "NOP":
+                teamName = "pelicans";
+                break;
+            case "NYK":
+                teamName = "knicks";
+                break;
+            case "OKC":
+                teamName = "thunder";
+                break;
+            case "ORL":
+                teamName = "magic";
+                break;
+            case "PHI":
+                teamName = "sixers";
+                break;
+            case "PHX":
+                teamName = "suns";
+                break;
+            case "POR":
+                teamName = "trailblazers";
+                break;
+            case "SAC":
+                teamName = "kings";
+                break;
+            case "SAS":
+                teamName = "spurs";
+                break;
+            case "TOR":
+                teamName = "raptors";
+                break;
+            case "UTA":
+                teamName = "jazz";
+                break;
+            case "WAS":
+                teamName = "wizards";
+                break;
+
+            default:
+                teamName = "";
+                break;
+        }
+
+        return teamName;
+    }
 }
