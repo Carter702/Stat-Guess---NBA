@@ -5,7 +5,6 @@ import android.util.Log;
 
 import com.carter.khyri.statguess_nba.service.model.GameInfo;
 import com.carter.khyri.statguess_nba.service.model.GameStat;
-import com.carter.khyri.statguess_nba.service.model.Roster;
 import com.carter.khyri.statguess_nba.service.utils.CommonUtils;
 
 import retrofit2.Call;
@@ -59,25 +58,8 @@ public class GameRepository {
         return data;
     }
 
-    public MutableLiveData<Roster> getRoster(String teamName) {
-        final MutableLiveData<Roster> data = new MutableLiveData<>();
+    //public MutableLiveData<Player> getPlayers();
 
-        nbaService = RetrofitRequest.getRetroInstance().create(NbaService.class);
-        Call<Roster> call = nbaService.getRoster("celtics");
-
-        call.enqueue(new Callback<Roster>() {
-            @Override
-            public void onResponse(Call<Roster> call, Response<Roster> response) {
-                data.setValue(response.body());
-            }
-
-            @Override
-            public void onFailure(Call<Roster> call, Throwable t) {
-                Log.i("DEBUG", "onFailure: FAILED TO CONNECT");
-            }
-        });
-
-        return data;
-    }
+    //public MutableLiveData<Team> getTeams();
 
 }
