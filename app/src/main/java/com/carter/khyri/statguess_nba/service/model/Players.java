@@ -9,16 +9,44 @@ public class Players {
 
     @PrimaryKey
     @ColumnInfo(name = "player_id")
-    public  String playerId;
+    private  String playerId;
 
     @ColumnInfo(name = "first_name")
-    public String firstName;
+    private String firstName;
 
     @ColumnInfo(name = "last_name")
-    public String lastName;
+    private String lastName;
 
     @ColumnInfo(name = "team_id")
-    public String teamId;
+    private String teamId;
 
-    public String position;
+    private String position;
+
+    public Players(String playerId, String firstName, String lastName, String teamId, String position) {
+        this.playerId = playerId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.teamId = teamId;
+        this.position = position;
+    }
+
+    public String getPlayerId() {
+        return playerId;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getTeamId() {
+        return teamId;
+    }
+
+    public String getPosition() {
+        return position;
+    }
 }
