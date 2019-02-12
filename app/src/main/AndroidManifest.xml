@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
+        android:name="com.carter.khyri.statguess_nba.service.utils.GlobalAppContext"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:logo="@mipmap/ic_launcher"

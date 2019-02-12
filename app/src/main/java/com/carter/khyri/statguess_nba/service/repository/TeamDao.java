@@ -5,6 +5,7 @@ import com.carter.khyri.statguess_nba.service.model.Teams;
 
 import java.util.List;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -24,7 +25,7 @@ public interface TeamDao {
     void delete(Teams team);
 
     @Query("SELECT * FROM Teams")
-    List<Teams> getTeams();
+    LiveData<List<Teams>> getTeams();
 
     @Query("SELECT * FROM Teams WHERE team_id = :teamId")
     Teams getTeam(String teamId);

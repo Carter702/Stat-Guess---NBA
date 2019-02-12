@@ -22,7 +22,7 @@ public class Player {
         @Expose
         private List<Person> standard = null;
 
-        public List<Person> getStandard() {
+        public List<Person> getPeople() {
             return standard;
         }
 
@@ -78,24 +78,6 @@ public class Player {
 
         public String getPos() {
             return pos;
-        }
-
-    }
-
-    public class Team {
-
-        @SerializedName("teamId")
-        @Expose
-        private String teamId;
-        @SerializedName("seasonStart")
-        @Expose
-        private String seasonStart;
-        @SerializedName("seasonEnd")
-        @Expose
-        private String seasonEnd;
-
-        public String getTeamId() {
-            return teamId;
         }
 
     }

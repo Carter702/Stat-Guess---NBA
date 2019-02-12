@@ -2,6 +2,7 @@ package com.carter.khyri.statguess_nba.service.repository;
 
 import com.carter.khyri.statguess_nba.service.model.GameInfo;
 import com.carter.khyri.statguess_nba.service.model.GameStat;
+import com.carter.khyri.statguess_nba.service.model.Player;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -19,8 +20,8 @@ public interface NbaService {
 //    @GET("prod/v2/2018/teams.json")
 //    Call<Team> getLeagueTeams();
 
-//    @GET("/prod/v1/2018/players.json")
-//    Call<Player> getPlayers();
+    @GET("/prod/v1/2018/players.json")
+    Call<Player> getPlayers();
 
 
 

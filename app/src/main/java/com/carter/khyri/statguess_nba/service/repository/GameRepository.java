@@ -1,11 +1,19 @@
 package com.carter.khyri.statguess_nba.service.repository;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+
+import android.app.Application;
 import android.util.Log;
 
 import com.carter.khyri.statguess_nba.service.model.GameInfo;
 import com.carter.khyri.statguess_nba.service.model.GameStat;
+import com.carter.khyri.statguess_nba.service.model.Player;
+import com.carter.khyri.statguess_nba.service.model.Players;
+import com.carter.khyri.statguess_nba.service.model.Teams;
 import com.carter.khyri.statguess_nba.service.utils.CommonUtils;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -13,8 +21,17 @@ import retrofit2.Response;
 
 public class GameRepository {
     private NbaService nbaService;
+    private PlayerDao playerDao;
+    private TeamDao teamDao;
+    private LiveData<List<Players>> teamPlayers;
+    private LiveData<List<Teams>> allTeams;
 
-    public GameRepository() {}
+    public GameRepository() { //Application application) {
+        //AppDatabase database = AppDatabase.getInstance(application);
+//        teamDao = database.teamDao();
+//        playerDao = database.playerDao();
+//        allTeams = teamDao.getTeams();
+    }
 
     public MutableLiveData<GameInfo> getGameData() {
         final MutableLiveData<GameInfo> data = new MutableLiveData<>();
@@ -58,7 +75,26 @@ public class GameRepository {
         return data;
     }
 
-    //public MutableLiveData<Player> getPlayers();
+    public MutableLiveData<Player> getPlayers() {
+        final MutableLiveData<Player> data = new MutableLiveData<>();
+
+        nbaService = RetrofitRequest.getRetroInstance().create(NbaService.class);
+        Call<Player> call = nbaService.getPlayers();
+
+        call.enqueue(new Callback<Player>() {
+            @Override
+            public void onResponse(Call<Player> call, Response<Player> response) {
+                data.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Player> call, Throwable t) {
+                Log.i("DEBUG", "onFailure: FAILED TO RESPOND");
+            }
+        });
+
+        return data;
+    }
 
     //public MutableLiveData<Team> getTeams();
 

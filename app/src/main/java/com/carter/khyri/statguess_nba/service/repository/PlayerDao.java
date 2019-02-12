@@ -5,6 +5,7 @@ import com.carter.khyri.statguess_nba.service.model.Players;
 
 import java.util.List;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -27,8 +28,8 @@ public interface PlayerDao {
     void deleteAllNodes();
 
     @Query("SELECT * FROM Players ORDER BY team_id DESC")
-    List<Player> getAllPlayers();
+    LiveData<List<Player>> getAllPlayers();
 
     @Query("SELECT * FROM Players WHERE team_id = :teamId ORDER BY position DESC")
-    List<Players> getTeamPlayers(String teamId);
+    LiveData<List<Players>> getTeamPlayers(String teamId);
 }
