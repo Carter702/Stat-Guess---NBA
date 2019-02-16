@@ -26,12 +26,7 @@ public class GameRepository {
     private LiveData<List<Players>> teamPlayers;
     private LiveData<List<Teams>> allTeams;
 
-    public GameRepository() { //Application application) {
-        //AppDatabase database = AppDatabase.getInstance(application);
-//        teamDao = database.teamDao();
-//        playerDao = database.playerDao();
-//        allTeams = teamDao.getTeams();
-    }
+    public GameRepository() {}
 
     public MutableLiveData<GameInfo> getGameData() {
         final MutableLiveData<GameInfo> data = new MutableLiveData<>();
