@@ -4,7 +4,7 @@ A statistics guessing game for the NBA. Players will try to predict who will get
 ## Features
 - [x] Display daily games with live scores
 - [ ] Allow users to select games and predicted stat leaders
-- [ ] Record and display previous user guesses
+- [ ] Record and display previous user pick history
 - [ ] Build and share user profile with pick percentages
 
 ## Libraries Used
