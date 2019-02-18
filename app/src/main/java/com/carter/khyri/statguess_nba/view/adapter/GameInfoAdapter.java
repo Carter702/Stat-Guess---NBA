@@ -5,7 +5,6 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.core.content.ContextCompat;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
@@ -28,7 +27,7 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
     private ArrayList<GameInfo.Game> mGames = new ArrayList<>();
     private ClickListener mListener;
     private Context mContext;
-    SharedViewModel model;
+    private SharedViewModel model;
 
     public interface ClickListener {
         void onItemClicked(GameInfo.Game game);

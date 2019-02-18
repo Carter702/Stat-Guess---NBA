@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,10 +19,10 @@ import com.carter.khyri.statguess_nba.viewmodel.GameInfoViewModel;
 
 
 public class GameInfoFragment extends Fragment{
-    GameInfoViewModel mViewModel;
-    GameInfo games;
-    RecyclerView mRecyclerView;
-    GameInfoAdapter mGameInfoAdapter;
+    private GameInfoViewModel mViewModel;
+    private GameInfo games = new GameInfo();
+    private RecyclerView mRecyclerView;
+    private GameInfoAdapter mGameInfoAdapter;
 
 
     public GameInfoFragment() { }
@@ -55,7 +54,7 @@ public class GameInfoFragment extends Fragment{
         return view;
     }
 
-    GameInfoAdapter.ClickListener listener = new GameInfoAdapter.ClickListener() {
+    private GameInfoAdapter.ClickListener listener = new GameInfoAdapter.ClickListener() {
         @Override
         public void onItemClicked(GameInfo.Game game) {
             GameStatsFragment gameStat = new GameStatsFragment();
@@ -67,7 +66,7 @@ public class GameInfoFragment extends Fragment{
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if (hidden == false){
+        if (!hidden){
             mViewModel.getGames().observe(this, new Observer<GameInfo>() {
                 @Override
                 public void onChanged(@Nullable GameInfo game) {

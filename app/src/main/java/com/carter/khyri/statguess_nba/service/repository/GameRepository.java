@@ -21,10 +21,6 @@ import retrofit2.Response;
 
 public class GameRepository {
     private NbaService nbaService;
-    private PlayerDao playerDao;
-    private TeamDao teamDao;
-    private LiveData<List<Players>> teamPlayers;
-    private LiveData<List<Teams>> allTeams;
 
     public GameRepository() {}
 
