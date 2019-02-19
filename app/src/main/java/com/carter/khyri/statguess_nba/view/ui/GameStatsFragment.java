@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.carter.khyri.statguess_nba.R;
-import com.carter.khyri.statguess_nba.service.model.GameInfo;
+import com.carter.khyri.statguess_nba.service.model.GameList;
 import com.carter.khyri.statguess_nba.service.model.GameStat;
 import com.carter.khyri.statguess_nba.service.utils.CommonUtils;
 import com.carter.khyri.statguess_nba.viewmodel.GameStatsViewModel;
@@ -27,7 +27,7 @@ public class GameStatsFragment extends Fragment {
     GameStat gameStat = new GameStat();
     private String gameId;
     private String homeTri, awayTri;
-    private GameInfo.Game sharedGame;
+    private GameList.Game sharedGame;
 
     public static GameStatsFragment newInstance() { return new GameStatsFragment();  }
 
@@ -37,9 +37,9 @@ public class GameStatsFragment extends Fragment {
 
         mViewModel = ViewModelProviders.of(this).get(GameStatsViewModel.class);
         SharedViewModel sharedModel = ViewModelProviders.of(getActivity()).get(SharedViewModel.class);
-        sharedModel.getGame().observe(this, new Observer<GameInfo.Game>() {
+        sharedModel.getGame().observe(this, new Observer<GameList.Game>() {
             @Override
-            public void onChanged(@Nullable GameInfo.Game game) {
+            public void onChanged(@Nullable GameList.Game game) {
                 sharedGame = game;
             }
         });

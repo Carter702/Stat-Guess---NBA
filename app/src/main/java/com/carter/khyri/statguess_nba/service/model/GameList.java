@@ -7,7 +7,7 @@ import java.util.List;
 
 
 
-public class GameInfo {
+public class GameList {
 
     @SerializedName("_internal")
     @Expose

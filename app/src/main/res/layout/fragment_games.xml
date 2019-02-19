@@ -4,7 +4,7 @@
     android:id="@+id/game_info_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.ui.GameInfoFragment">
+    tools:context=".view.ui.GameListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/game_recycler"

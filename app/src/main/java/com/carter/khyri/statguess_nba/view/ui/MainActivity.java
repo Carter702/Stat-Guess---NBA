@@ -12,7 +12,7 @@ import com.carter.khyri.statguess_nba.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    final Fragment gameFrag = new GameInfoFragment();
+    final Fragment gameFrag = new GameListFragment();
     final Fragment profileFrag = new ProfileFragment();
     final Fragment historyFrag = new HistoryFragment();
     final FragmentManager fm = getSupportFragmentManager();

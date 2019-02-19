@@ -1,19 +1,13 @@
 package com.carter.khyri.statguess_nba.service.repository;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import android.app.Application;
 import android.util.Log;
 
-import com.carter.khyri.statguess_nba.service.model.GameInfo;
+import com.carter.khyri.statguess_nba.service.model.GameList;
 import com.carter.khyri.statguess_nba.service.model.GameStat;
 import com.carter.khyri.statguess_nba.service.model.Player;
-import com.carter.khyri.statguess_nba.service.model.Players;
-import com.carter.khyri.statguess_nba.service.model.Teams;
 import com.carter.khyri.statguess_nba.service.utils.CommonUtils;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,20 +18,20 @@ public class GameRepository {
 
     public GameRepository() {}
 
-    public MutableLiveData<GameInfo> getGameData() {
-        final MutableLiveData<GameInfo> data = new MutableLiveData<>();
+    public MutableLiveData<GameList> getGameData() {
+        final MutableLiveData<GameList> data = new MutableLiveData<>();
 
         nbaService = RetrofitRequest.getRetroInstance().create(NbaService.class);
-        Call<GameInfo> call = nbaService.getGameData(CommonUtils.getDate());
+        Call<GameList> call = nbaService.getGameData(CommonUtils.getDate());
 
-        call.enqueue(new Callback<GameInfo>() {
+        call.enqueue(new Callback<GameList>() {
             @Override
-            public void onResponse(Call<GameInfo> call, Response<GameInfo> response) {
+            public void onResponse(Call<GameList> call, Response<GameList> response) {
                     data.setValue(response.body());
             }
 
             @Override
-            public void onFailure(Call<GameInfo> call, Throwable t) {
+            public void onFailure(Call<GameList> call, Throwable t) {
                 Log.i("DEBUG", "onFailure: FAILED TO RESPOND");
             }
         });

@@ -13,7 +13,7 @@
 
     <string name="title_activity_main">MainActivity</string>
 
-    <!-- GameInfo fragment text -->
+    <!-- GameList fragment text -->
     <string name="hello_blank_fragment">Games Fragment</string>
     <string name="home_city">HOME</string>
     <string name="home_score">31</string>

@@ -13,24 +13,24 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.carter.khyri.statguess_nba.R;
-import com.carter.khyri.statguess_nba.view.adapter.GameInfoAdapter;
-import com.carter.khyri.statguess_nba.service.model.GameInfo;
-import com.carter.khyri.statguess_nba.viewmodel.GameInfoViewModel;
+import com.carter.khyri.statguess_nba.service.model.GameList;
+import com.carter.khyri.statguess_nba.view.adapter.GameListAdapter;
+import com.carter.khyri.statguess_nba.viewmodel.GameListViewModel;
 
 
-public class GameInfoFragment extends Fragment{
-    private GameInfoViewModel mViewModel;
-    private GameInfo games = new GameInfo();
+public class GameListFragment extends Fragment{
+    private GameListViewModel mViewModel;
+    private GameList games = new GameList();
     private RecyclerView mRecyclerView;
-    private GameInfoAdapter mGameInfoAdapter;
+    private GameListAdapter mGameListAdapter;
 
 
-    public GameInfoFragment() { }
+    public GameListFragment() { }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        games = new GameInfo();
+        games = new GameList();
     }
 
     @Override
@@ -41,12 +41,12 @@ public class GameInfoFragment extends Fragment{
         mRecyclerView = (RecyclerView) view.findViewById(R.id.game_recycler);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        mViewModel = ViewModelProviders.of(this).get(GameInfoViewModel.class);
-        mViewModel.getGames().observe(this, new Observer<GameInfo>() {
+        mViewModel = ViewModelProviders.of(this).get(GameListViewModel.class);
+        mViewModel.getGames().observe(this, new Observer<GameList>() {
             @Override
-            public void onChanged(@Nullable GameInfo game) {
-                mGameInfoAdapter = new GameInfoAdapter(game, listener, getContext());
-                mRecyclerView.setAdapter(mGameInfoAdapter);
+            public void onChanged(@Nullable GameList game) {
+                mGameListAdapter = new GameListAdapter(game, listener, getContext());
+                mRecyclerView.setAdapter(mGameListAdapter);
                 games = game;
             }
         });
@@ -54,9 +54,9 @@ public class GameInfoFragment extends Fragment{
         return view;
     }
 
-    private GameInfoAdapter.ClickListener listener = new GameInfoAdapter.ClickListener() {
+    private GameListAdapter.ClickListener listener = new GameListAdapter.ClickListener() {
         @Override
-        public void onItemClicked(GameInfo.Game game) {
+        public void onItemClicked(GameList.Game game) {
             GameStatsFragment gameStat = new GameStatsFragment();
             gameStat.setGameInfo(game.getGameId(), game.getHTeam().getTriCode(), game.getVTeam().getTriCode());
             getChildFragmentManager().beginTransaction().replace(R.id.game_info_container, gameStat).addToBackStack(null).commit();
@@ -67,11 +67,11 @@ public class GameInfoFragment extends Fragment{
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (!hidden){
-            mViewModel.getGames().observe(this, new Observer<GameInfo>() {
+            mViewModel.getGames().observe(this, new Observer<GameList>() {
                 @Override
-                public void onChanged(@Nullable GameInfo game) {
-                    mGameInfoAdapter = new GameInfoAdapter(game, listener, getContext());
-                    mRecyclerView.setAdapter(mGameInfoAdapter);
+                public void onChanged(@Nullable GameList game) {
+                    mGameListAdapter = new GameListAdapter(game, listener, getContext());
+                    mRecyclerView.setAdapter(mGameListAdapter);
                     games = game;
                 }
             });

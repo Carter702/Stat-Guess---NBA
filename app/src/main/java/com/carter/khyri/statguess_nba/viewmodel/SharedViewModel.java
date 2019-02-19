@@ -4,16 +4,16 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.carter.khyri.statguess_nba.service.model.GameInfo;
+import com.carter.khyri.statguess_nba.service.model.GameList;
 
 public class SharedViewModel extends ViewModel {
-    private final MutableLiveData<GameInfo.Game> game = new MutableLiveData<>();
+    private final MutableLiveData<GameList.Game> game = new MutableLiveData<>();
 
-    public void setGame(GameInfo.Game selected) {
+    public void setGame(GameList.Game selected) {
         game.setValue(selected);
     }
 
-    public LiveData<GameInfo.Game> getGame() {
+    public LiveData<GameList.Game> getGame() {
         return game;
     }
 }

@@ -15,25 +15,25 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.carter.khyri.statguess_nba.R;
-import com.carter.khyri.statguess_nba.service.model.GameInfo;
+import com.carter.khyri.statguess_nba.service.model.GameList;
 import com.carter.khyri.statguess_nba.service.utils.CommonUtils;
 import com.carter.khyri.statguess_nba.viewmodel.SharedViewModel;
 
 import java.util.ArrayList;
 
 
-public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameViewHolder> {
-    private GameInfo gameList;
-    private ArrayList<GameInfo.Game> mGames = new ArrayList<>();
+public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.GameViewHolder> {
+    private GameList gameList;
+    private ArrayList<GameList.Game> mGames = new ArrayList<>();
     private ClickListener mListener;
     private Context mContext;
     private SharedViewModel model;
 
     public interface ClickListener {
-        void onItemClicked(GameInfo.Game game);
+        void onItemClicked(GameList.Game game);
     }
 
-    public GameInfoAdapter(GameInfo gameList, ClickListener listener, Context context) {
+    public GameListAdapter(GameList gameList, ClickListener listener, Context context) {
         this.gameList = gameList;
         this.mListener = listener;
         this.mContext = context;
@@ -43,7 +43,7 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
 
     @NonNull
     @Override
-    public GameInfoAdapter.GameViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public GameListAdapter.GameViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         final View view = layoutInflater.inflate(R.layout.item_game, parent, false);
@@ -55,7 +55,7 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
     @Override
     public void onBindViewHolder(@NonNull GameViewHolder gameViewHolder, int position) {
 
-        final GameInfo.Game game = mGames.get(position);
+        final GameList.Game game = mGames.get(position);
         model.setGame(game);
         Log.i("DEBUG", "HERE: Position:" + position + " FIRST: " + gameViewHolder.txtHomeFirstPoints.getText().toString());
         String hTeam = game.getHTeam().getTriCode();
@@ -118,7 +118,7 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
 
     }
 
-    private String getQuarter(GameInfo.Game game) {
+    private String getQuarter(GameList.Game game) {
         int quarterNum = game.getPeriod().getCurrent();
         String quarter;
 
@@ -151,7 +151,7 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
         return quarter;
     }
 
-    private void getOvertimePoints(GameViewHolder viewHolder, GameInfo.Game game) {
+    private void getOvertimePoints(GameViewHolder viewHolder, GameList.Game game) {
         int totalHome = 0, totalAway = 0;
         int end = game.getPeriod().getCurrent();
         int index = game.getPeriod().getMaxRegular();
@@ -165,7 +165,7 @@ public class GameInfoAdapter extends RecyclerView.Adapter<GameInfoAdapter.GameVi
         viewHolder.txtAwayaOtPoints.setText(Integer.toString(totalAway));
     }
 
-    private void labelWInner(GameViewHolder viewHolder, GameInfo.Game game) {
+    private void labelWInner(GameViewHolder viewHolder, GameList.Game game) {
         int homeScore = Integer.parseInt(game.getHTeam().getScore());
         int awayScore = Integer.parseInt(game.getVTeam().getScore());
         int orange = ContextCompat.getColor(viewHolder.itemView.getContext(), R.color.materialOrange);
