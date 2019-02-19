@@ -1,5 +1,7 @@
 package com.carter.khyri.statguess_nba.service.repository;
 
+import android.os.AsyncTask;
+
 import com.carter.khyri.statguess_nba.service.model.Player;
 import com.carter.khyri.statguess_nba.service.model.Players;
 
@@ -25,11 +27,12 @@ public interface PlayerDao {
     void delete(Players player);
 
     @Query("DELETE FROM Players")
-    void deleteAllNodes();
+    void deleteAllPlayers();
 
     @Query("SELECT * FROM Players ORDER BY team_id DESC")
-    LiveData<List<Player>> getAllPlayers();
+    LiveData<List<Players>> getAllPlayers();
 
     @Query("SELECT * FROM Players WHERE team_id = :teamId ORDER BY position DESC")
     LiveData<List<Players>> getTeamPlayers(String teamId);
+
 }

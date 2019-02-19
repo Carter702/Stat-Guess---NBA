@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel;
 
 import com.carter.khyri.statguess_nba.service.model.GameList;
 
+import java.util.List;
+
 public class SharedViewModel extends ViewModel {
     private final MutableLiveData<GameList.Game> game = new MutableLiveData<>();
 
