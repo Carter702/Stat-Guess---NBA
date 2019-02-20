@@ -11,4 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <TextView
+        android:id="@+id/no_game_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/no_games"
+        android:gravity="center"
+        android:visibility="gone"
+        style="@style/GameStatLabels"
+        />
+
 </FrameLayout>

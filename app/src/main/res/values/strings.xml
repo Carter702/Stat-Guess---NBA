@@ -14,7 +14,7 @@
     <string name="title_activity_main">MainActivity</string>
 
     <!-- GameList fragment text -->
-    <string name="hello_blank_fragment">Games Fragment</string>
+    <string name="no_games">No games today</string>
     <string name="home_city">HOME</string>
     <string name="home_score">31</string>
     <string name="away_city">AWAY</string>
