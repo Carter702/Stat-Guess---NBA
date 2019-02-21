@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +40,7 @@ public class GameListFragment extends Fragment{
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_games, container, false);
 
-        TextView emptyView = view.findViewById(R.id.no_game_text);
+        final TextView emptyView = view.findViewById(R.id.no_game_text);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.game_recycler);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -50,17 +51,18 @@ public class GameListFragment extends Fragment{
                 mGameListAdapter = new GameListAdapter(game, listener, getContext());
                 mRecyclerView.setAdapter(mGameListAdapter);
                 games = game;
+
+                if(games.getNumGames() == 0) {
+                    mRecyclerView.setVisibility(View.GONE);
+                    emptyView.setVisibility(View.VISIBLE);
+                }
+                else {
+                    emptyView.setVisibility(View.GONE);
+                    mRecyclerView.setVisibility(View.VISIBLE);
+                }
             }
         });
 
-        if(games.getNumGames() == 0) {
-            mRecyclerView.setVisibility(View.GONE);
-            emptyView.setVisibility(View.VISIBLE);
-        }
-        else {
-            emptyView.setVisibility(View.GONE);
-            mRecyclerView.setVisibility(View.VISIBLE);
-        }
 
         return view;
     }

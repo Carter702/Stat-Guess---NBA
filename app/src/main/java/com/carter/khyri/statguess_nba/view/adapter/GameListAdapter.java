@@ -57,7 +57,7 @@ public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.GameVi
 
         final GameList.Game game = mGames.get(position);
         model.setGame(game);
-        Log.i("DEBUG", "HERE: Position:" + position + " FIRST: " + gameViewHolder.txtHomeFirstPoints.getText().toString());
+
         String hTeam = game.getHTeam().getTriCode();
         String hScore = game.getHTeam().getScore();
         String aTeam = game.getVTeam().getTriCode();
