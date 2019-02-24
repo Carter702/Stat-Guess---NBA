@@ -24,7 +24,7 @@ public class GameStatsFragment extends Fragment {
 
     private GameStatsViewModel mViewModel;
 
-    GameStat gameStat = new GameStat();
+    private GameStat gameStat = new GameStat();
     private String gameId;
     private String homeTri, awayTri;
     private GameList.Game sharedGame;
@@ -86,7 +86,6 @@ public class GameStatsFragment extends Fragment {
         this.gameId = id;
         this.homeTri = homeTriCode;
         this.awayTri = awayTriCode;
-        this.homeTri = homeTriCode;
     }
 
     @Override

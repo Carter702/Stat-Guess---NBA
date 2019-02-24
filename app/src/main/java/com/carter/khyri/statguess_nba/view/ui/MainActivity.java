@@ -42,17 +42,14 @@ public class MainActivity extends AppCompatActivity {
                     gameFrag.getChildFragmentManager().popBackStackImmediate();
                     fm.beginTransaction().hide(active).show(gameFrag).commit();
                     active = gameFrag;
-                    //gamesPressed()
                     return true;
                 case R.id.navigation_history:
                     fm.beginTransaction().hide(active).show(historyFrag).commit();
                     active = historyFrag;
-                    //historyPressed()
                     return true;
                 case R.id.navigation_profile:
                     fm.beginTransaction().hide(active).show(profileFrag).commit();
                     active = profileFrag;
-                    //profilePressed()
                     return true;
             }
 

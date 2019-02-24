@@ -53,10 +53,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-//            for(Player p : players) {
-//                playerDao.insert(new Players(p.id, p.first, p.last, p.team, p.position));
-//            }
-            playerDao.insert(new Players("1001", "Jim", "Playston", "2001", "C"));
+
             return null;
         }
     }

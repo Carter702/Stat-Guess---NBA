@@ -1,6 +1,8 @@
 package com.carter.khyri.statguess_nba.view.ui;
 
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
@@ -16,16 +18,20 @@ import android.widget.TextView;
 
 import com.carter.khyri.statguess_nba.R;
 import com.carter.khyri.statguess_nba.service.model.GameList;
+import com.carter.khyri.statguess_nba.service.model.Player;
+import com.carter.khyri.statguess_nba.service.model.Players;
 import com.carter.khyri.statguess_nba.view.adapter.GameListAdapter;
 import com.carter.khyri.statguess_nba.viewmodel.GameListViewModel;
+import com.carter.khyri.statguess_nba.viewmodel.SharedViewModel;
 
 
 public class GameListFragment extends Fragment{
     private GameListViewModel mViewModel;
-    private GameList games = new GameList();
+    private SharedViewModel mSharedViewModel;
+    private GameList games;
     private RecyclerView mRecyclerView;
     private GameListAdapter mGameListAdapter;
-
+    private TextView emptyView;
 
     public GameListFragment() { }
 
@@ -39,30 +45,15 @@ public class GameListFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_games, container, false);
-
-        final TextView emptyView = view.findViewById(R.id.no_game_text);
+        emptyView = view.findViewById(R.id.no_game_text);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.game_recycler);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         mViewModel = ViewModelProviders.of(this).get(GameListViewModel.class);
-        mViewModel.getGames().observe(this, new Observer<GameList>() {
-            @Override
-            public void onChanged(@Nullable GameList game) {
-                mGameListAdapter = new GameListAdapter(game, listener, getContext());
-                mRecyclerView.setAdapter(mGameListAdapter);
-                games = game;
+//        mSharedViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication());
 
-                if(games.getNumGames() == 0) {
-                    mRecyclerView.setVisibility(View.GONE);
-                    emptyView.setVisibility(View.VISIBLE);
-                }
-                else {
-                    emptyView.setVisibility(View.GONE);
-                    mRecyclerView.setVisibility(View.VISIBLE);
-                }
-            }
-        });
-
+        callGetGames();
+        callGetPlayers();
 
         return view;
     }
@@ -80,20 +71,44 @@ public class GameListFragment extends Fragment{
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (!hidden){
-            mViewModel.getGames().observe(this, new Observer<GameList>() {
-                @Override
-                public void onChanged(@Nullable GameList game) {
-                    mGameListAdapter = new GameListAdapter(game, listener, getContext());
-                    mRecyclerView.setAdapter(mGameListAdapter);
-                    games = game;
-                }
-            });
+            callGetGames();
         }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    private void callGetGames() {
+        mViewModel.getGames().observe(this, new Observer<GameList>() {
+            @Override
+            public void onChanged(@Nullable GameList game) {
+                mGameListAdapter = new GameListAdapter(game, listener, getContext());
+                mRecyclerView.setAdapter(mGameListAdapter);
+                games = game;
+
+                if(games.getNumGames() == 0) {
+                    mRecyclerView.setVisibility(View.GONE);
+                    emptyView.setVisibility(View.VISIBLE);
+                }
+                else {
+                    emptyView.setVisibility(View.GONE);
+                    mRecyclerView.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+    }
+
+    private void callGetPlayers() {
+        mViewModel.getPlayers().observe(this, new Observer<Player>() {
+            @Override
+            public void onChanged(Player player) {
+                //mSharedViewModel.insertAll(player.getLeague().getPeople());
+            }
+        });
+
+
     }
 
 }

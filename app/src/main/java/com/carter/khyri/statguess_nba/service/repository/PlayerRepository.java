@@ -19,30 +19,30 @@ public class PlayerRepository {
         allPlayers = playerDao.getAllPlayers();
     }
 
-    public void insert(Players players) {
-        new InsertPlayerAsynctask(playerDao).execute(players);
+    public void insert(Players player) {
+        new InsertPlayerAsyncTask(playerDao).execute(player);
     }
 
     public void update(Players players) {
-        new UpdatePlayerAsynctask(playerDao).execute(players);
+        new UpdatePlayerAsyncTask(playerDao).execute(players);
     }
 
     public void delete(Players players) {
-        new DeletePlayerAsynctask(playerDao).execute(players);
+        new DeletePlayerAsyncTask(playerDao).execute(players);
     }
 
     public void deleteAllPlayers() {
-        new DeleteAllPlayerAsynctask(playerDao).execute();
+        new DeleteAllPlayerAsyncTask(playerDao).execute();
     }
 
     public LiveData<List<Players>> getAllPlayers() {
         return allPlayers;
     }
 
-    private static class InsertPlayerAsynctask extends AsyncTask<Players, Void, Void> {
+    private static class InsertPlayerAsyncTask extends AsyncTask<Players, Void, Void> {
         private PlayerDao playerDao;
 
-        private InsertPlayerAsynctask(PlayerDao playerDao) {
+        private InsertPlayerAsyncTask(PlayerDao playerDao) {
             this.playerDao = playerDao;
         }
 
@@ -53,10 +53,10 @@ public class PlayerRepository {
         }
     }
 
-    private static class UpdatePlayerAsynctask extends AsyncTask<Players, Void, Void> {
+    private static class UpdatePlayerAsyncTask extends AsyncTask<Players, Void, Void> {
         private PlayerDao playerDao;
 
-        private UpdatePlayerAsynctask(PlayerDao playerDao) {
+        private UpdatePlayerAsyncTask(PlayerDao playerDao) {
             this.playerDao = playerDao;
         }
 
@@ -67,10 +67,10 @@ public class PlayerRepository {
         }
     }
 
-    private static class DeletePlayerAsynctask extends AsyncTask<Players, Void, Void> {
+    private static class DeletePlayerAsyncTask extends AsyncTask<Players, Void, Void> {
         private PlayerDao playerDao;
 
-        private DeletePlayerAsynctask(PlayerDao playerDao) {
+        private DeletePlayerAsyncTask(PlayerDao playerDao) {
             this.playerDao = playerDao;
         }
 
@@ -81,10 +81,10 @@ public class PlayerRepository {
         }
     }
 
-    private static class DeleteAllPlayerAsynctask extends AsyncTask<Players, Void, Void> {
+    private static class DeleteAllPlayerAsyncTask extends AsyncTask<Players, Void, Void> {
         private PlayerDao playerDao;
 
-        private DeleteAllPlayerAsynctask(PlayerDao playerDao) {
+        private DeleteAllPlayerAsyncTask(PlayerDao playerDao) {
             this.playerDao = playerDao;
         }
 
